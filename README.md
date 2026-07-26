@@ -1,6 +1,6 @@
 # <App Name>
 
-<One-line description.> CST 338 Project 2 — Team **<Team Name>**.
+Monstruos - Monster Battle CST 338 Project 2 — Team **Data Minds**.
 
 ## Team & Slice Ownership
 | Slice | Owner | GitHub username | Issues | Branch(es) | PR(s) | Enhancement chosen | Status |
