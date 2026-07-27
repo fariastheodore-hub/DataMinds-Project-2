@@ -1,11 +1,11 @@
-# <App Name>
+# Monstruos
 
 Monstruos - Monster Battle CST 338 Project 2 — Team **Data Minds**.
 
 ## Team & Slice Ownership
 | Slice | Owner | GitHub username | Issues | Branch(es) | PR(s) | Enhancement chosen | Status |
 |-------|-------|-----------------|--------|------------|-------|--------------------|--------|
-| 1 — Accounts | Theo Farias | fariastheodore-hub | | | | | planned |
+| 1 — Accounts | Theo Farias | fariastheodore-hub | #1 | #2 | | | planned |
 | 2 — Creature Roster | | | | | | | |
 | 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | | | | | planned |
 | 4 — Admin & Arenas | | | | | | | |
@@ -23,7 +23,7 @@ Issue if the team later decides to attempt it for extra credit._
 ## Code Review Log
 | PR | Author | Human reviewer(s) | AI review (link) | Outcome |
 |----|--------|-------------------|------------------|---------|
-|  | | |  |  |
+| #2 | Theo Farias | Ameen Hamdalla | N/A | Approved/Merged |
 
 ## AI Usage Log
 - **AI-drafted tests:** <link to TESTING.md / commit> — per owner.
