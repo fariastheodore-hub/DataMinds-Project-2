@@ -17,8 +17,8 @@ public enum SQL_Bank {
           monstruos   TEXT DEFAULT NULL,
           level       INTEGER NOT NULL DEFAULT 0,
           health      REAL NOT NULL DEFAULT 100.0,
-          updated     DATETIME DEFAULT CURRENT_TIMESTAMP,
-          created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP      )
+          created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )
       """);
 
   // Add next table enum here

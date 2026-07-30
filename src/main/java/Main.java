@@ -2,7 +2,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * This is the entry point into the JavaFX program.
+ * This is the entry point into the JavaFX program, Monstruos.
  *
  * @author Theodore Farias
  * @version 0.1.0

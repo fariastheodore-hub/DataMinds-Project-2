@@ -2,7 +2,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Factory for creating the different scenes for Monstruos.
+ * Factory for creating the different scenes for Monstruos application.
  *
  * @author Theodore Farias
  * @version 0.1.0
