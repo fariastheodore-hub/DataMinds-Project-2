@@ -5,7 +5,7 @@ Monstruos - Monster Battle CST 338 Project 2 — Team **Data Minds**.
 ## Team & Slice Ownership
 | Slice | Owner | GitHub username | Issues | Branch(es) | PR(s) | Enhancement chosen | Status |
 |-------|-------|-----------------|--------|------------|-------|--------------------|--------|
-| 1 — Accounts | Theo Farias | fariastheodore-hub | #1, #4, #5, #6, #7, #8| #2 | | Custom reusable FXML component | planned |
+| 1 — Accounts | Theo Farias | fariastheodore-hub | #1, #4, #5, #6, #7, #8, #15, #16 | theodore/JavaFX-setup, theodore/sceneType, theodore/SQLite-setup | #2, #13, #14 | Custom reusable FXML component | in-progress |
 | 2 — Creature Roster | | | | | | | |
 | 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | #9, #10, #11| | | Notifications / alerts | planned |
 | 4 — Admin & Arenas | | | | | | | |
@@ -24,6 +24,8 @@ Issue if the team later decides to attempt it for extra credit._
 | PR | Author | Human reviewer(s) | AI review (link) | Outcome |
 |----|--------|-------------------|------------------|---------|
 | #2 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
+| #13 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
+| #14 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 
 ## AI Usage Log
 - **AI-drafted tests:** <link to TESTING.md / commit> — per owner.
@@ -39,4 +41,4 @@ Issue if the team later decides to attempt it for extra credit._
 ./gradlew run        # launch the app
 ./gradlew test       # run the test suite
 ```
-Requirements: JDK <version>, JavaFX <version>. Any setup notes go here.
+Requirements: JDK 25, JavaFX <version>. Any setup notes go here.
