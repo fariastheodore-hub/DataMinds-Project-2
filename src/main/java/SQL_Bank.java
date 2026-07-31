@@ -16,7 +16,8 @@ public enum SQL_Bank {
           character   INTEGER NOT NULL DEFAULT 0,
           monstruos   TEXT DEFAULT NULL,
           level       INTEGER NOT NULL DEFAULT 0,
-          health      REAL NOT NULL DEFAULT 100.0
+          health      REAL NOT NULL DEFAULT 100.0,
+          created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
 
