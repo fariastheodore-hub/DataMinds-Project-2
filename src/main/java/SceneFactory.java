@@ -12,6 +12,10 @@ import javafx.stage.Stage;
  */
 public final class SceneFactory {
 
+  private SceneFactory() {
+    //Utility class
+  }
+
   /**
    * Chooses appropriate scene builder method based on provided SceneType.
    *
@@ -35,7 +39,7 @@ public final class SceneFactory {
    */
   private static Scene buildLogin(Stage stage) {
     DatabaseManager.getInstance();
-    Label label = new Label("Not yet implemented in FXML (temp scene)");
+    Label label = new Label("Not yet implemented in FXML (Login)");
     VBox root = new VBox(label);
     return new Scene(root);
   }
@@ -47,7 +51,7 @@ public final class SceneFactory {
    * @return Create Account scene
    */
   private static Scene buildCreateAccount(Stage stage) {
-    Label label = new Label("Not yet implemented in FXML (temp scene)");
+    Label label = new Label("Not yet implemented in FXML (Create Account)");
     VBox root = new VBox(label);
     return new Scene(root);
   }
@@ -59,7 +63,7 @@ public final class SceneFactory {
    * @return Player Account scene
    */
   private static Scene buildPlayerAccount(Stage stage) {
-    Label label = new Label("Not yet implemented in FXML (temp scene)");
+    Label label = new Label("Not yet implemented in FXML (Player Account)");
     VBox root = new VBox(label);
     return new Scene(root);
   }
