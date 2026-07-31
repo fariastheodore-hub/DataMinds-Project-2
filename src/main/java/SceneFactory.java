@@ -1,4 +1,6 @@
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -33,8 +35,9 @@ public final class SceneFactory {
    */
   private static Scene buildLogin(Stage stage) {
     DatabaseManager.getInstance();
-    System.out.println("Not yet implemented in FXML");
-    return null;
+    Label label = new Label("Not yet implemented in FXML (temp scene)");
+    VBox root = new VBox(label);
+    return new Scene(root);
   }
 
   /**
@@ -44,8 +47,9 @@ public final class SceneFactory {
    * @return Create Account scene
    */
   private static Scene buildCreateAccount(Stage stage) {
-    System.out.println("Not yet implemented in FXML");
-    return null;
+    Label label = new Label("Not yet implemented in FXML (temp scene)");
+    VBox root = new VBox(label);
+    return new Scene(root);
   }
 
   /**
@@ -55,8 +59,9 @@ public final class SceneFactory {
    * @return Player Account scene
    */
   private static Scene buildPlayerAccount(Stage stage) {
-    System.out.println("Not yet implemented in FXML");
-    return null;
+    Label label = new Label("Not yet implemented in FXML (temp scene)");
+    VBox root = new VBox(label);
+    return new Scene(root);
   }
 }
 
