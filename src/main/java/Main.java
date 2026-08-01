@@ -10,11 +10,8 @@ import javafx.stage.Stage;
  */
 
 public class Main extends Application {
-
-
   @Override
   public void start(Stage primaryStage) {
-
     primaryStage.setTitle("Monstruos");
     primaryStage.setScene(SceneFactory.create(SceneType.LOGIN, primaryStage));
     primaryStage.show();

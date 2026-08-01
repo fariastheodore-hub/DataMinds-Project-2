@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.net.URL;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -38,10 +42,16 @@ public final class SceneFactory {
    * @return Login scene
    */
   private static Scene buildLogin(Stage stage) {
-    DatabaseManager.getInstance();
-    Label label = new Label("Not yet implemented in FXML (Login)");
-    VBox root = new VBox(label);
-    return new Scene(root);
+    try {
+      URL fxmlLocation = Main.class.getResource(SceneType.LOGIN.getFxml_url());
+      FXMLLoader loader = new FXMLLoader(fxmlLocation);
+      Parent root = loader.load();
+      return new Scene(root);
+    } catch (IOException e) {
+      System.out.println("Coule not load FXML Scene" + e.getMessage());
+      return null;
+    }
+
   }
 
   /**
