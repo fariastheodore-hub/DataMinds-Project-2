@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane prefHeight="495.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateAccountController">
+
+  <center>
+
+    <VBox alignment="CENTER" prefHeight="410.0" prefWidth="543.0" spacing="20" BorderPane.alignment="CENTER">
+      <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+      </padding>
+      <TextField maxWidth="300" promptText="Enter user name" />
+      <TextField maxWidth="300" promptText="Enter Password" />
+      <Button maxWidth="100" onAction="#toLogin" text="Back to login" />
+
+    </VBox>
+
+  </center>
+  <top>
+    <Label fx:id="titleLabel" alignment="CENTER" prefHeight="155.0" prefWidth="197.0" style="-fx-font-size: 25;" text="MONSTRUOS" BorderPane.alignment="CENTER" />
+  </top>
+
+</BorderPane>

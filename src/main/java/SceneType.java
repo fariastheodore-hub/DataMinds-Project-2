@@ -7,7 +7,17 @@
  */
 public enum SceneType {
   // Place commas between enums and semicolon after last.
-  LOGIN,
-  CREATE_ACCOUNT,
-  PLAYER_ACCOUNT;
+  LOGIN("/login-screen.fxml"),
+  CREATE_ACCOUNT("/create-account-screen.fxml"),
+  PLAYER_ACCOUNT("/player-account-screen.fxml"),;
+
+  private final String fxml_url;
+
+  SceneType(String fxml_url) {
+    this.fxml_url = fxml_url;
+  }
+
+  public String getFxml_url() {
+    return fxml_url;
+  }
 }
