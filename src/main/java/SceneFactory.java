@@ -49,7 +49,7 @@ public final class SceneFactory {
       FXMLLoader loader = new FXMLLoader(fxmlLocation);
       Parent root = loader.load();
       Scene scene = new Scene(root);
-      scene.getStylesheets().add(Main.class.getResource(CSS_STYLE_SHEET).toExternalForm());
+      scene.getStylesheets().add(CSS_STYLE_SHEET);
       return scene;
     } catch (IOException e) {
       System.out.println("Could not load FXML Scene" + e.getMessage());
@@ -65,9 +65,17 @@ public final class SceneFactory {
    * @return Create Account scene
    */
   private static Scene buildCreateAccount(Stage stage) {
-    Label label = new Label("Not yet implemented in FXML (Create Account)");
-    VBox root = new VBox(label);
-    return new Scene(root);
+    try {
+      URL fxmlLocation = Main.class.getResource(SceneType.CREATE_ACCOUNT.getFxml_url());
+      FXMLLoader loader = new FXMLLoader(fxmlLocation);
+      Parent root = loader.load();
+      Scene scene = new Scene(root);
+      scene.getStylesheets().add(CSS_STYLE_SHEET);
+      return scene;
+    } catch (IOException e) {
+      System.out.println("Could not load FXML Scene" + e.getMessage());
+      return null;
+    }
   }
 
   /**
@@ -77,9 +85,17 @@ public final class SceneFactory {
    * @return Player Account scene
    */
   private static Scene buildPlayerAccount(Stage stage) {
-    Label label = new Label("Not yet implemented in FXML (Player Account)");
-    VBox root = new VBox(label);
-    return new Scene(root);
+    try {
+      URL fxmlLocation = Main.class.getResource(SceneType.PLAYER_ACCOUNT.getFxml_url());
+      FXMLLoader loader = new FXMLLoader(fxmlLocation);
+      Parent root = loader.load();
+      Scene scene = new Scene(root);
+      scene.getStylesheets().add(CSS_STYLE_SHEET);
+      return scene;
+    } catch (IOException e) {
+      System.out.println("Could not load FXML Scene" + e.getMessage());
+      return null;
+    }
   }
 }
 

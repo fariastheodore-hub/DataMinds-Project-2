@@ -13,7 +13,6 @@
       <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
       </padding>
-         <AmbientLight color="CHARTREUSE" lightOn="true" />
       <TextField maxWidth="300" promptText="Enter user name" />
       <TextField maxWidth="300" promptText="Enter Password" />
       <Button maxWidth="100" onAction="#createAccount" text="Create Account" />

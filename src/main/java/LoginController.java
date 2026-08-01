@@ -9,7 +9,8 @@ public class LoginController {
 
   @FXML
   private void createAccount() {
-
+    Stage stage = (Stage) titleLabel.getScene().getWindow();
+    stage.setScene(SceneFactory.create(SceneType.CREATE_ACCOUNT, stage));
   }
 }
 
