@@ -9,7 +9,7 @@ public class LoginController {
 
   @FXML
   private void createAccount() {
-    titleLabel.setText("Create Account");
+
   }
 }
 

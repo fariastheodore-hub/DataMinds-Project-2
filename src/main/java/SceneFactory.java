@@ -16,6 +16,8 @@ import javafx.stage.Stage;
  */
 public final class SceneFactory {
 
+  private static final String CSS_STYLE_SHEET = "/css/styles.css";
+
   private SceneFactory() {
     //Utility class
   }
@@ -46,9 +48,11 @@ public final class SceneFactory {
       URL fxmlLocation = Main.class.getResource(SceneType.LOGIN.getFxml_url());
       FXMLLoader loader = new FXMLLoader(fxmlLocation);
       Parent root = loader.load();
-      return new Scene(root);
+      Scene scene = new Scene(root);
+      scene.getStylesheets().add(Main.class.getResource(CSS_STYLE_SHEET).toExternalForm());
+      return scene;
     } catch (IOException e) {
-      System.out.println("Coule not load FXML Scene" + e.getMessage());
+      System.out.println("Could not load FXML Scene" + e.getMessage());
       return null;
     }
 

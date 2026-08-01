@@ -1,0 +1,19 @@
+.root {
+  -fx-font-family: "segoe ui";
+  -fx-background-color: #00FF00;
+}
+
+.label {
+  -fx-text-fill: purple;
+
+}
+
+.button {
+  -fx-background-color: orange;
+  -fx-text-fill: purple;
+  -fx-background-radius: 8;
+  -fx-padding: 8 16 8 16;
+}
+.button:hover {
+  -fx-background-color: yellow;
+}
