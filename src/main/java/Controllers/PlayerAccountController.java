@@ -1,4 +1,4 @@
-import javafx.fxml.FXML;
+package Controllers;
 
 public class PlayerAccountController {
 

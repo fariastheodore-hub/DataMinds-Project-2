@@ -1,3 +1,6 @@
+import Database.DatabaseManager;
+import SceneBuilding.SceneFactory;
+import SceneBuilding.SceneType;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

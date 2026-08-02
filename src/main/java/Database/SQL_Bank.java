@@ -1,3 +1,5 @@
+package Database;
+
 /**
  * Enum for SQL Strings.
  *
@@ -29,7 +31,7 @@ public enum SQL_Bank {
   private final String sql;
 
   /**
-   * Constructor for SQL_Bank enum.
+   * Constructor for Database.SQL_Bank enum.
    *
    * @param description description of SQL statement.
    * @param sql         SQL statement.

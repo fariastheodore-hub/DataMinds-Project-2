@@ -1,10 +1,10 @@
+package SceneBuilding;
+
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -23,7 +23,7 @@ public final class SceneFactory {
   }
 
   /**
-   * Chooses appropriate scene builder method based on provided SceneType.
+   * Chooses appropriate scene builder method based on provided SceneBuilding.SceneType.
    *
    * @param sceneType enum for scene types
    * @param stage     primary stage

@@ -1,3 +1,6 @@
+package Controllers;
+import SceneBuilding.SceneFactory;
+import SceneBuilding.SceneType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
