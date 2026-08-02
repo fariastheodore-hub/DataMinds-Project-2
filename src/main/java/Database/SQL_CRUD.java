@@ -4,7 +4,7 @@ public enum SQL_CRUD {
   PLAYER_ADD("Create new player", """
       INSERT INTO player (username, password, name)
       VALUES (?, ?, ?)
-      ON CONFLICT(username) DO NOTHING;""");
+      """);
 
   private final String DESCRIPTION;
   private final String SQL;

@@ -46,7 +46,6 @@ public class CreateAccountController {
       System.out.println("Passwords do not match!");
       return;
     }
-    PlayerDao.createPlayer(username, name, password);
-    System.out.println("Account created!");
+    System.out.println(PlayerDao.createPlayer(username, name, password));
   }
 }
