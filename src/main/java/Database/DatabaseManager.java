@@ -21,7 +21,7 @@ public class DatabaseManager {
   //Holds reference of instance of Database.DatabaseManager
   private static DatabaseManager instance;
   //Connection to SQLite database
-  private Connection connection;
+  private static Connection connection;
 
 
   /**
@@ -39,14 +39,14 @@ public class DatabaseManager {
   }
 
   /**
-   * Creates the database tables based on the sql entered in the Database.SQL_Bank.
+   * Creates the database tables based on the sql entered in the Database.SQL_Tables.
    */
   private void createTables() {
-    SQL_Bank[] tables = SQL_Bank.values();
-    for (SQL_Bank table : tables) {
+    SQL_Tables[] tables = SQL_Tables.values();
+    for (SQL_Tables table : tables) {
       try (Statement stmt = connection.createStatement()) {
         stmt.execute(table.getSql());
-        System.out.println("Table created: " + table.getSql());
+        System.out.println("Table created: " + table.toString());
       } catch (SQLException e) {
         System.err.println("createTables failed: " + e.getMessage());
       }
@@ -68,7 +68,15 @@ public class DatabaseManager {
   }
 
   /**
-   * Attempts to close the connection to the database. Called by Main.Java's stop() method.
+   * Provides connection from DatabaseManager instance.
+   * @return Connection from DatabaseManager instance.
+   */
+  public static Connection getConnection() {
+    return connection;
+  }
+
+  /**
+   * Attempts to close the connection to the database. Called by SceneBuilding.Main.Java's stop() method.
    */
   public void close() {
     try {

@@ -1,5 +1,6 @@
 package SceneBuilding;
 
+import Database.DatabaseManager;
 import java.io.IOException;
 import java.net.URL;
 import javafx.fxml.FXMLLoader;
@@ -45,6 +46,7 @@ public final class SceneFactory {
    */
   private static Scene buildLogin(Stage stage) {
     try {
+      DatabaseManager.getInstance();
       URL fxmlLocation = Main.class.getResource(SceneType.LOGIN.getFxml_url());
       FXMLLoader loader = new FXMLLoader(fxmlLocation);
       Parent root = loader.load();

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="495.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
 
   <center>
@@ -15,9 +12,19 @@
       <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
       </padding>
-      <TextField maxWidth="300" promptText="Enter user name" />
-      <TextField maxWidth="300" promptText="Enter Password" />
-      <Button maxWidth="100" onAction="#toLogin" text="Back to login" />
+      <TextField fx:id="usernameField" maxWidth="300" promptText="Enter username" />
+         <TextField fx:id="nameField" layoutX="300.0" layoutY="167.0" maxWidth="300" promptText="Enter name" />
+      <TextField fx:id="passwordField" maxWidth="300" promptText="Enter password" />
+         <TextField fx:id="confirmPasswordField" layoutX="300.0" layoutY="190.0" maxWidth="300" promptText="Confirm password" />
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+            <children>
+            <Button onAction="#toLogin" text="Back to login" />
+               <Button onAction="#createAccount" text="Create Account" />
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </HBox>
 
     </VBox>
 

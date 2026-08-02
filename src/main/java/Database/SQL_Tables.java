@@ -8,11 +8,11 @@ package Database;
  * @since 7/28/2026
  */
 
-public enum SQL_Bank {
-  PLAYER_TABLE("player table creation", """
+public enum SQL_Tables {
+  PLAYER_TABLE("player", """
       CREATE TABLE IF NOT EXISTS player (
           id          INTEGER PRIMARY KEY AUTOINCREMENT,
-          username    TEXT NOT NULL,
+          username    TEXT UNIQUE NOT NULL,
           password    TEXT NOT NULL,
           name        TEXT NOT NULL,
           character   INTEGER NOT NULL DEFAULT 0,
@@ -21,24 +21,28 @@ public enum SQL_Bank {
           health      REAL NOT NULL DEFAULT 100.0,
           created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
-      """);
+      """)
+  // Add next enum here
+  ;
+
 
   // Add next enum here
 
   // Description of SQL statement.
-  private final String description;
+  private final String TITLE;
   // String of SQL statement.
-  private final String sql;
+  private final String SQL;
+
 
   /**
-   * Constructor for Database.SQL_Bank enum.
+   * Constructor for Database.SQL_Tables enum.
    *
-   * @param description description of SQL statement.
-   * @param sql         SQL statement.
+   * @param title title of SQL table.
+   * @param sql SQL statement.
    */
-  SQL_Bank(String description, String sql) {
-    this.description = description;
-    this.sql = sql;
+  SQL_Tables(String title, String sql) {
+    TITLE = title;
+    SQL = sql;
   }
 
   /**
@@ -47,16 +51,18 @@ public enum SQL_Bank {
    * @return sql String.
    */
   public String getSql() {
-    return sql;
+    return SQL;
   }
+
+
 
   /**
    * Overridden toString
    *
-   * @return String of SQL description.
+   * @return String of SQL table info.
    */
   @Override
   public String toString() {
-    return "SQL description: " + description;
+    return "SQL_Tables{" + "title=" + TITLE + ", sql=" + SQL + '}';
   }
 }
