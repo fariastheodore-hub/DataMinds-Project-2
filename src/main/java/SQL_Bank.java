@@ -7,7 +7,7 @@
  */
 
 public enum SQL_Bank {
-  PLAYER("player", """
+  PLAYER_TABLE("player table creation", """
       CREATE TABLE IF NOT EXISTS player (
           id          INTEGER PRIMARY KEY AUTOINCREMENT,
           username    TEXT NOT NULL,
@@ -21,21 +21,21 @@ public enum SQL_Bank {
       )
       """);
 
-  // Add next table enum here
+  // Add next enum here
 
-  // Name of table
-  private final String name;
-  // String of sql create statement
+  // Description of SQL statement.
+  private final String description;
+  // String of SQL statement.
   private final String sql;
 
   /**
    * Constructor for SQL_Bank enum.
    *
-   * @param name name of table
-   * @param sql  table create statement.
+   * @param description description of SQL statement.
+   * @param sql         SQL statement.
    */
-  SQL_Bank(String name, String sql) {
-    this.name = name;
+  SQL_Bank(String description, String sql) {
+    this.description = description;
     this.sql = sql;
   }
 
@@ -49,11 +49,12 @@ public enum SQL_Bank {
   }
 
   /**
-   * name getter
+   * Overridden toString
    *
-   * @return table name String
+   * @return String of SQL description.
    */
-  public String getName() {
-    return name;
+  @Override
+  public String toString() {
+    return "SQL description: " + description;
   }
 }
