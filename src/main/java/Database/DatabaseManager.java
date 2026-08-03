@@ -1,3 +1,5 @@
+package Database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,7 +7,7 @@ import java.sql.Statement;
 
 /**
  * Establishes connection to database and closes connection at stop of application. Singleton
- * implementation provides single instance of DatabaseManager upon call of getInstance().
+ * implementation provides single instance of Database.DatabaseManager upon call of getInstance().
  *
  * @author Theodore Farias
  * @version 0.1.0
@@ -16,10 +18,10 @@ public class DatabaseManager {
 
   //database URL to connect to app.db SQLite database
   private static final String DB_URL = "jdbc:sqlite:app.db";
-  //Holds reference of instance of DatabaseManager
+  //Holds reference of instance of Database.DatabaseManager
   private static DatabaseManager instance;
   //Connection to SQLite database
-  private Connection connection;
+  protected static Connection connection;
 
 
   /**
@@ -37,14 +39,14 @@ public class DatabaseManager {
   }
 
   /**
-   * Creates the database tables based on the sql entered in the SQL_Bank.
+   * Creates the database tables based on the sql entered in the Database.SQL_Tables.
    */
   private void createTables() {
-    SQL_Bank[] tables = SQL_Bank.values();
-    for (SQL_Bank table : tables) {
+    SQL_Tables[] tables = SQL_Tables.values();
+    for (SQL_Tables table : tables) {
       try (Statement stmt = connection.createStatement()) {
         stmt.execute(table.getSql());
-        System.out.println("Table created: " + table.getSql());
+        System.out.println("Table created: " + table.toString());
       } catch (SQLException e) {
         System.err.println("createTables failed: " + e.getMessage());
       }
@@ -56,7 +58,7 @@ public class DatabaseManager {
    * Singleton implementation for instantiating the DatabaseManger or getting the single instance
    * that has been instantiated.
    *
-   * @return single instance of DatabaseManager
+   * @return single instance of Database.DatabaseManager
    */
   public static DatabaseManager getInstance() {
     if (instance == null) {
@@ -66,7 +68,7 @@ public class DatabaseManager {
   }
 
   /**
-   * Attempts to close the connection to the database. Called by Main.Java's stop() method.
+   * Attempts to close the connection to the database. Called by SceneBuilding.Main.Java's stop() method.
    */
   public void close() {
     try {

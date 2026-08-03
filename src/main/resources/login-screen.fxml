@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="495.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
 
   <center>
 
@@ -13,9 +12,15 @@
       <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
       </padding>
-      <TextField maxWidth="300" promptText="Enter user name" />
-      <TextField maxWidth="300" promptText="Enter Password" />
-      <Button maxWidth="100" onAction="#createAccount" text="Create Account" />
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <children>
+               <Label text="New to the game? ➡" />
+            <Button onAction="#createAccount" text="Create Account" />
+            </children>
+         </HBox>
+      <TextField fx:id="usernameTextField" maxWidth="300" promptText="Enter user name" />
+      <TextField fx:id="passwordTextField" maxWidth="300" promptText="Enter Password" />
+         <Button onAction="#checkLogin" text="Login" />
 
     </VBox>
 

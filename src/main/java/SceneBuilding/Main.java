@@ -1,3 +1,6 @@
+package SceneBuilding;
+
+import Database.DatabaseManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,8 +15,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
   @Override
   public void start(Stage primaryStage) {
+    //Setup database if not already set up.
+    DatabaseManager.getInstance();
     primaryStage.setTitle("Monstruos");
-    primaryStage.setScene(SceneFactory.create(SceneType.LOGIN, primaryStage));
+    primaryStage.setScene(SceneFactory.create(SceneType.LOGIN));
     primaryStage.show();
   }
 

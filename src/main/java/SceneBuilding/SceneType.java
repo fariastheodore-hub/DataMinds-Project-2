@@ -1,3 +1,5 @@
+package SceneBuilding;
+
 /**
  * enums to define scene types that can be created.
  *
