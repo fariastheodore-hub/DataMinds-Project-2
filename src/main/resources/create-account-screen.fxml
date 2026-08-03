@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="495.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
 
   <center>
 
@@ -12,8 +12,11 @@
       <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
       </padding>
+         <Label text="Login Username" />
       <TextField fx:id="usernameField" maxWidth="300" promptText="Enter username" />
+         <Label text="Display Name" />
          <TextField fx:id="nameField" layoutX="300.0" layoutY="167.0" maxWidth="300" promptText="Enter name" />
+         <Label text="Password: Must be at least 8 characters long with at least one uppercase, one lowercase, one number and one special character (!@#$%^&amp;*)" />
       <TextField fx:id="passwordField" maxWidth="300" promptText="Enter password" />
          <TextField fx:id="confirmPasswordField" layoutX="300.0" layoutY="190.0" maxWidth="300" promptText="Confirm password" />
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">

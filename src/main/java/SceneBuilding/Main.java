@@ -18,7 +18,7 @@ public class Main extends Application {
     //Setup database if not already set up.
     DatabaseManager.getInstance();
     primaryStage.setTitle("Monstruos");
-    primaryStage.setScene(SceneFactory.create(SceneType.LOGIN, primaryStage));
+    primaryStage.setScene(SceneFactory.create(SceneType.LOGIN));
     primaryStage.show();
   }
 

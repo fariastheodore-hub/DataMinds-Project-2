@@ -21,7 +21,7 @@ public class DatabaseManager {
   //Holds reference of instance of Database.DatabaseManager
   private static DatabaseManager instance;
   //Connection to SQLite database
-  private static Connection connection;
+  protected static Connection connection;
 
 
   /**
@@ -65,14 +65,6 @@ public class DatabaseManager {
       instance = new DatabaseManager();
     }
     return instance;
-  }
-
-  /**
-   * Provides connection from DatabaseManager instance.
-   * @return Connection from DatabaseManager instance.
-   */
-  public static Connection getConnection() {
-    return connection;
   }
 
   /**

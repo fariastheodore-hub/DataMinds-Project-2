@@ -27,24 +27,22 @@ public final class SceneFactory {
    * Chooses appropriate scene builder method based on provided SceneBuilding.SceneType.
    *
    * @param sceneType enum for scene types
-   * @param stage     primary stage
    * @return scene build by scene builder method.
    */
-  public static Scene create(SceneType sceneType, Stage stage) {
+  public static Scene create(SceneType sceneType) {
     return switch (sceneType) {
-      case LOGIN -> buildLogin(stage);
-      case CREATE_ACCOUNT -> buildCreateAccount(stage);
-      case PLAYER_ACCOUNT -> buildPlayerAccount(stage);
+      case LOGIN -> buildLogin();
+      case CREATE_ACCOUNT -> buildCreateAccount();
+      case PLAYER_ACCOUNT -> buildPlayerAccount();
     };
   }
 
   /**
    * Builds Login scene
    *
-   * @param stage primaryStage
    * @return Login scene
    */
-  private static Scene buildLogin(Stage stage) {
+  private static Scene buildLogin() {
     try {
       DatabaseManager.getInstance();
       URL fxmlLocation = Main.class.getResource(SceneType.LOGIN.getFxml_url());
@@ -63,10 +61,9 @@ public final class SceneFactory {
   /**
    * Builds Create Account scene
    *
-   * @param stage primaryStage
    * @return Create Account scene
    */
-  private static Scene buildCreateAccount(Stage stage) {
+  private static Scene buildCreateAccount() {
     try {
       URL fxmlLocation = Main.class.getResource(SceneType.CREATE_ACCOUNT.getFxml_url());
       FXMLLoader loader = new FXMLLoader(fxmlLocation);
@@ -83,10 +80,9 @@ public final class SceneFactory {
   /**
    * Builds Player Account scene
    *
-   * @param stage primaryStage
    * @return Player Account scene
    */
-  private static Scene buildPlayerAccount(Stage stage) {
+  private static Scene buildPlayerAccount() {
     try {
       URL fxmlLocation = Main.class.getResource(SceneType.PLAYER_ACCOUNT.getFxml_url());
       FXMLLoader loader = new FXMLLoader(fxmlLocation);

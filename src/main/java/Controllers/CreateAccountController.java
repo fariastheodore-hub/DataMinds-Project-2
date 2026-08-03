@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.PlayerDao;
+import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -28,7 +29,7 @@ public class CreateAccountController {
   @FXML
   private void toLogin() {
     Stage stage = (Stage) titleLabel.getScene().getWindow();
-    stage.setScene(SceneFactory.create(SceneType.LOGIN, stage));
+    stage.setScene(SceneFactory.create(SceneType.LOGIN));
   }
 
   @FXML
@@ -37,15 +38,54 @@ public class CreateAccountController {
     String name = nameField.getText();
     String password = passwordField.getText();
     String confirmPassword = confirmPasswordField.getText();
+    String error = "";
 
     if (username.isEmpty() || name.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-      System.out.println("Please fill all the fields!");
+      error = "Please fill all the fields";
+      PopupMessage.errorPopup("Account Creation Error", error);
+      return;
+    }
+    if (password.length() < 8) {
+      error = "Password too short";
+      PopupMessage.errorPopup("Account Creation Error", error);
       return;
     }
     if (!password.equals(confirmPassword)) {
-      System.out.println("Passwords do not match!");
+      error = "Passwords do not match";
+      PopupMessage.errorPopup("Account Creation Error", error);
+
       return;
     }
-    System.out.println(PlayerDao.createPlayer(username, name, password));
+    if (!checkPassword(password)) {
+      error = "Passwords must contain specified characters";
+      PopupMessage.errorPopup("Account Creation Error", error);
+      return;
+    }
+    PopupMessage.successPopup("Account Creation", PlayerDao.createPlayer(username, password, name));
+  }
+
+  private boolean checkPassword(String password) {
+    short specialChars = 0;
+    short upperCaseChars = 0;
+    short lowerCaseChars = 0;
+    short numberChars = 0;
+    for (char ch : password.toCharArray()) {
+      if (ch == '!' || ch == '@' || ch == '#' || ch == '$' || ch == '%' || ch == '^' || ch == '&' || ch == '*') {
+        specialChars++;
+        continue;
+      }
+      if (Character.isUpperCase(ch)) {
+        upperCaseChars++;
+        continue;
+      }
+      if (Character.isLowerCase(ch)) {
+        lowerCaseChars++;
+        continue;
+      }
+      if (Character.isDigit(ch)) {
+        numberChars++;
+      }
+    }
+    return specialChars > 0 && upperCaseChars > 0 && lowerCaseChars > 0 && numberChars > 0;
   }
 }
