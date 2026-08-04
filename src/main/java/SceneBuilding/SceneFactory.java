@@ -78,9 +78,9 @@ public final class SceneFactory {
   }
 
   /**
-   * Builds Player Account scene
+   * Builds Entities.Player Account scene
    *
-   * @return Player Account scene
+   * @return Entities.Player Account scene
    */
   private static Scene buildPlayerAccount() {
     try {

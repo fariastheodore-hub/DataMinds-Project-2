@@ -53,5 +53,4 @@ public interface PopupMessage {
       alert.close();
     });
   }
-
 }

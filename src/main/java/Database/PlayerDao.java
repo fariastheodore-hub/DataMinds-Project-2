@@ -1,8 +1,10 @@
 package Database;
 
+import SceneBuilding.PopupMessage;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
 /**
  * player table DAO for CRUD operations.
@@ -15,9 +17,9 @@ public interface PlayerDao {
 
   /**
    * Adds a player to the database.
-   * @param username Player entered username.
-   * @param password Player entered password.
-   * @param name Player entered display name
+   * @param username Entities.Player entered username.
+   * @param password Entities.Player entered password.
+   * @param name Entities.Player entered display name
    * @return message based on result.
    */
   static String createPlayer(String username, String password, String name) {
@@ -40,8 +42,8 @@ public interface PlayerDao {
 
   /**
    * Checks the passed login credentials against the database.
-   * @param username Player provided username.
-   * @param password Player provided password.
+   * @param username Entities.Player provided username.
+   * @param password Entities.Player provided password.
    * @return boolean result of whether the username and password combo were found.
    */
   static boolean checkLogin(String username, String password) {
@@ -57,6 +59,23 @@ public interface PlayerDao {
     } catch (SQLException e) {
       System.err.println(e.getMessage());
       return false;
+    }
+  }
+
+  static String[] getPlayerStats(String username) {
+    String[] stats = new String[6];
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(SQL_CRUD.PLAYER_STATS.getSql())) {
+      pstmt.setString(1, username.toLowerCase());
+      ResultSet resultSet = pstmt.executeQuery();
+      stats[0] = resultSet.getString("password");
+      stats[1] = resultSet.getString("name");
+      stats[2] = Integer.toString(resultSet.getInt("character"));
+      stats[3] = resultSet.getString("monstruos");
+      stats[4] = Integer.toString(resultSet.getInt("level"));
+      stats[5] = Float.toString(resultSet.getFloat("health"));
+      return stats;
+    } catch (SQLException e) {
+      return stats;
     }
   }
 

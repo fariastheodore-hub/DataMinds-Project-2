@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.PlayerDao;
+import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
@@ -48,12 +49,11 @@ public class LoginController {
     }
     if (PlayerDao.checkLogin(username, password)) {
       PopupMessage.successPopup("Login Success", "Login Successful");
-      PauseTransition pause = new PauseTransition();
-      pause.setDuration(Duration.millis(3000));
-      pause.setOnFinished(event -> {
-        Stage stage = (Stage) titleLabel.getScene().getWindow();
-        stage.setScene(SceneFactory.create(SceneType.PLAYER_ACCOUNT));
-      });
+      Stage stage = (Stage) titleLabel.getScene().getWindow();
+      PlayerAccountController playerAccountController = new PlayerAccountController();
+      stage.setScene(SceneFactory.create(SceneType.PLAYER_ACCOUNT));
+      playerAccountController.initializePlayerAccountValues(username);
+
     } else {
       PopupMessage.errorPopup("Login Error", "Wrong username or password");
     }

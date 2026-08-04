@@ -22,6 +22,7 @@ public enum SQL_Tables {
           created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """)
+
   // Add next enum here
   ;
 
