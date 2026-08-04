@@ -4,8 +4,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * player table DAO for CRUD operations.
+ *
+ * @author Theodore Farias
+ * @version 0.1.0
+ * @since 8/1/2026
+ */
 public interface PlayerDao {
 
+  /**
+   * Adds a player to the database.
+   * @param username Player entered username.
+   * @param password Player entered password.
+   * @param name Player entered display name
+   * @return message based on result.
+   */
   static String createPlayer(String username, String password, String name) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PLAYER_ADD.getSql())) {
@@ -23,6 +37,13 @@ public interface PlayerDao {
       }
     }
   }
+
+  /**
+   * Checks the passed login credentials against the database.
+   * @param username Player provided username.
+   * @param password Player provided password.
+   * @return boolean result of whether the username and password combo were found.
+   */
   static boolean checkLogin(String username, String password) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(SQL_CRUD.LOGIN_CHECK.getSql())) {
       pstmt.setString(1, username.toLowerCase());
