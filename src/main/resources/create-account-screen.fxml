@@ -4,36 +4,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateAccountController">
 
   <center>
 
-    <VBox alignment="CENTER" prefHeight="410.0" prefWidth="543.0" spacing="20" BorderPane.alignment="CENTER">
+    <VBox alignment="CENTER" prefHeight="410.0" prefWidth="543.0" spacing="20"
+      BorderPane.alignment="CENTER">
       <padding>
-        <Insets bottom="20" left="20" right="20" top="20" />
+        <Insets bottom="20" left="20" right="20" top="20"/>
       </padding>
-         <Label text="Login Username" />
-      <TextField fx:id="usernameField" maxWidth="300" promptText="Enter username" />
-         <Label text="Display Name" />
-         <TextField fx:id="nameField" layoutX="300.0" layoutY="167.0" maxWidth="300" promptText="Enter name" />
-         <Label text="Password: Must be at least 8 characters long with at least one uppercase, one lowercase, one number and one special character (!@#$%^&amp;*)" />
-      <TextField fx:id="passwordField" maxWidth="300" promptText="Enter password" />
-         <TextField fx:id="confirmPasswordField" layoutX="300.0" layoutY="190.0" maxWidth="300" promptText="Confirm password" />
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
-            <children>
-            <Button onAction="#toLogin" text="Back to login" />
-               <Button onAction="#createAccount" text="Create Account" />
-            </children>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-         </HBox>
+      <Label text="Login Username"/>
+      <TextField fx:id="usernameField" maxWidth="300" promptText="Enter username"/>
+      <Label text="Display Name"/>
+      <TextField fx:id="nameField" layoutX="300.0" layoutY="167.0" maxWidth="300"
+        promptText="Enter name"/>
+      <Label
+        text="Password: Must be at least 8 characters long with at least one uppercase, one lowercase, one number and one special character (!@#$%^&amp;*)"/>
+      <PasswordField fx:id="passwordField" maxWidth="300" promptText="Enter password"/>
+      <PasswordField fx:id="confirmPasswordField" layoutX="300.0" layoutY="190.0" maxWidth="300"
+        promptText="Confirm password"/>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+        <opaqueInsets>
+          <Insets/>
+        </opaqueInsets>
+        <Button onAction="#toLogin" text="Back to login"/>
+        <Button onAction="#createAccount" text="Create Account"/>
+      </HBox>
 
     </VBox>
 
   </center>
   <top>
-    <Label fx:id="titleLabel" alignment="CENTER" prefHeight="155.0" prefWidth="197.0" style="-fx-font-size: 25;" text="MONSTRUOS" BorderPane.alignment="CENTER" />
+    <Label fx:id="titleLabel" alignment="CENTER" prefHeight="155.0" prefWidth="197.0"
+      style="-fx-font-size: 25;" text="MONSTRUOS" BorderPane.alignment="CENTER"/>
   </top>
 
 </BorderPane>

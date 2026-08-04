@@ -7,6 +7,7 @@ import SceneBuilding.SceneType;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -26,11 +27,11 @@ public class LoginController {
 
   // Username field
   @FXML
-  TextField usernameTextField;
+  private TextField usernameTextField;
 
   //Password field
   @FXML
-  TextField passwordTextField;
+  private PasswordField passwordTextField;
 
   /**
    * Checks if all fields are filled out, then communicates with PlayerDao to find matching if username and password match and rows

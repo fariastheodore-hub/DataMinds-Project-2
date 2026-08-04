@@ -5,6 +5,7 @@ import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import SceneBuilding.SceneFactory;
@@ -32,11 +33,11 @@ public class CreateAccountController {
 
   // Password field
   @FXML
-  private TextField passwordField;
+  private PasswordField passwordField;
 
   // Confirm password field
   @FXML
-  private TextField confirmPasswordField;
+  private PasswordField confirmPasswordField;
 
   /**
    * Calls SceneFactory create method to create Login scene.
