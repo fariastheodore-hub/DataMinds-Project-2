@@ -1,5 +1,12 @@
 package Database;
 
+/**
+ * Enum for database CRUD operation SQL
+ *
+ * @author Theodore Farias
+ * @version 0.1.0
+ * @since 8/1/2026
+ */
 public enum SQL_CRUD {
   PLAYER_ADD("Create new player", """
       INSERT INTO player (username, password, name)
