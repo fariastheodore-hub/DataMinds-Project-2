@@ -80,6 +80,47 @@ public final class BattleStatsDao {
         }
     }
 
+    /**
+     * updates players battle statistics like wins losses and flees
+     */
+    public static boolean update(BattleStats stats) {
+        DatabaseManager.getInstance();
+
+        try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(UPDATE_SQL)) {
+
+            pstmt.setInt(1, stats.wins());
+            pstmt.setInt(2, stats.losses());
+            pstmt.setInt(3, stats.flees());
+            pstmt.setInt(4, stats.userId());
+
+            return pstmt.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+            System.err.println("Could not update battle stats: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * deletes players battle statistics
+     */
+
+    public static boolean delete(int userId) {
+        DatabaseManager.getInstance();
+
+        try (PreparedStatement pstmt =
+                     DatabaseManager.connection.prepareStatement(DELETE_SQL)) {
+
+            pstmt.setInt(1, userId);
+            return pstmt.executeUpdate() == 1;
+
+        } catch (SQLException e) {
+            System.err.println(
+                    "Could not delete battle stats: " + e.getMessage()
+            );
+            return false;
+        }
+    }
 }
 
 
