@@ -19,7 +19,7 @@
             </children>
          </HBox>
       <TextField fx:id="usernameTextField" maxWidth="300" promptText="Enter user name" />
-      <TextField fx:id="passwordTextField" maxWidth="300" promptText="Enter Password" />
+      <PasswordField fx:id="passwordTextField" maxWidth="300" promptText="Enter Password" />
          <Button onAction="#checkLogin" text="Login" />
 
     </VBox>

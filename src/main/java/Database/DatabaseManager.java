@@ -20,7 +20,7 @@ public class DatabaseManager {
   private static final String DB_URL = "jdbc:sqlite:app.db";
   //Holds reference of instance of Database.DatabaseManager
   private static DatabaseManager instance;
-  //Connection to SQLite database
+  //Connection to SQLite database - Package private
   protected static Connection connection;
 
 

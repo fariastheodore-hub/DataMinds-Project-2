@@ -25,10 +25,7 @@ public enum SQL_Tables {
   // Add next enum here
   ;
 
-
-  // Add next enum here
-
-  // Description of SQL statement.
+  // Title of sql table.
   private final String TITLE;
   // String of SQL statement.
   private final String SQL;
