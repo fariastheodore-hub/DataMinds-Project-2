@@ -11,9 +11,9 @@
          <children>
             <VBox layoutY="9.0" prefHeight="104.0" prefWidth="107.0" style="-fx-background-color: Orange;" AnchorPane.rightAnchor="455.2" AnchorPane.topAnchor="9.0">
                <children>
-                  <Label prefHeight="30.0" prefWidth="92.0" text="W: 0" />
-                  <Label prefHeight="27.0" prefWidth="103.0" text="L: 0" />
-                  <Label prefHeight="30.0" prefWidth="99.0" text="Fled: 0" />
+                  <Label fx:id="wins" prefHeight="30.0" prefWidth="92.0" text="W: 0" />
+                  <Label fx:id="losses" prefHeight="27.0" prefWidth="103.0" text="L: 0" />
+                  <Label fx:id="fled" prefHeight="30.0" prefWidth="99.0" text="Fled: 0" />
                   <Label prefHeight="27.0" prefWidth="99.0" text="Fled: 0" textFill="#0000000b" />
                </children>
             </VBox>
