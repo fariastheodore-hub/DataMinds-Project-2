@@ -5,7 +5,7 @@ Monstruos - Monster Battle CST 338 Project 2 — Team **Data Minds**.
 ## Team & Slice Ownership
 | Slice | Owner | GitHub username | Issues | Branch(es) | PR(s) | Enhancement chosen | Status |
 |-------|-------|-----------------|--------|------------|-------|--------------------|--------|
-| 1 — Accounts | Theo Farias | fariastheodore-hub | #1, #4, #5, #6, #7, #8, #15, #16 | theodore/JavaFX-setup, theodore/sceneType, theodore/SQLite-setup | #2, #13, #14 | Custom reusable FXML component | in-progress |
+| 1 — Accounts | Theo Farias | fariastheodore-hub | #1, #4, #5, #6, #7, #8, #15, #16, #23 | theodore/JavaFX-setup, theodore/sceneType, theodore/SQLite-setup, theodore/DAO_CRUD, theodore/first-tests, theodore/ai-review-fixes, theodore/SceneFactory | #2, #13, #14, #19, #20, #21, #22, #25, #27, #32, #33 | Custom reusable FXML component | in-progress |
 | 2 — Creature Roster | | | | | | | |
 | 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | #9, #10, #11, #26| ameen/battle-scene | #29, #31 | Notifications / alerts | in-progress |
 | 4 — Admin & Arenas | | | | | | | |
