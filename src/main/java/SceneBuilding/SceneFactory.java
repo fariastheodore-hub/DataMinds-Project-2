@@ -34,6 +34,7 @@ public final class SceneFactory {
       case LOGIN -> buildLogin();
       case CREATE_ACCOUNT -> buildCreateAccount();
       case PLAYER_ACCOUNT -> buildPlayerAccount();
+      case BATTLE -> buildBattle();
     };
   }
 
@@ -95,5 +96,27 @@ public final class SceneFactory {
       return null;
     }
   }
+
+
+  /*
+  * Builds the battle scene
+   */
+  private static Scene buildBattle() {
+    try {
+      URL fxmlLocation = Main.class.getResource(SceneType.BATTLE.getFxml_url());
+
+      FXMLLoader loader = new FXMLLoader(fxmlLocation);
+      Parent root = loader.load();
+
+      Scene scene = new Scene(root);
+      scene.getStylesheets().add(CSS_STYLE_SHEET);
+      return scene;
+
+    } catch (IOException e) {
+      System.out.println("Could not load Battle FXML Scene: " + e.getMessage());
+      return null;
+    }
+  }
+
 }
 
