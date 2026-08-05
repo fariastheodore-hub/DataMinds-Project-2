@@ -7,7 +7,7 @@ Monstruos - Monster Battle CST 338 Project 2 — Team **Data Minds**.
 |-------|-------|-----------------|--------|------------|-------|--------------------|--------|
 | 1 — Accounts | Theo Farias | fariastheodore-hub | #1, #4, #5, #6, #7, #8, #15, #16 | theodore/JavaFX-setup, theodore/sceneType, theodore/SQLite-setup | #2, #13, #14 | Custom reusable FXML component | in-progress |
 | 2 — Creature Roster | | | | | | | |
-| 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | #9, #10, #11| | | Notifications / alerts | planned |
+| 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | #9, #10, #11, #26| | | Notifications / alerts | planned |
 | 4 — Admin & Arenas | | | | | | | |
 | 5 — Marketplace & Trading | | | | | | | |
 _Status values: planned · in-progress · complete_
