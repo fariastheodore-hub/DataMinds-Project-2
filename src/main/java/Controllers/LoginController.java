@@ -50,15 +50,11 @@ public class LoginController {
     if (PlayerDao.checkLogin(username, password)) {
       PopupMessage.successPopup("Login Success", "Login Successful");
       Stage stage = (Stage) titleLabel.getScene().getWindow();
-      PlayerAccountController playerAccountController = new PlayerAccountController();
-      stage.setScene(SceneFactory.create(SceneType.PLAYER_ACCOUNT));
-      playerAccountController.initializePlayerAccountValues(username);
-
+      stage.setScene(SceneFactory.create(SceneType.PLAYER_ACCOUNT, username));
     } else {
       PopupMessage.errorPopup("Login Error", "Wrong username or password");
     }
   }
-
   /**
    * Uses SceneFactory to create the Create Account scene and sets the scene.
    */

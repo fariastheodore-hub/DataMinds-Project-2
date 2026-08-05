@@ -79,4 +79,20 @@ public interface PlayerDao {
     }
   }
 
+  static String updatePassword(String username, String password) {
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(SQL_CRUD.PASSWORD_CHANGE.getSql())) {
+      pstmt.setString(1,password);
+      pstmt.setString(2,username);
+      pstmt.executeUpdate();
+      if(checkLogin(username, password)) {
+        return "Password successfully changed";
+      }
+      else {
+        return "Password did not update!";
+      }
+    } catch (SQLException e) {
+      return e.getMessage();
+    }
+  }
+
 }

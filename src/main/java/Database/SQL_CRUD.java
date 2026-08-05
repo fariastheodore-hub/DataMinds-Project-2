@@ -20,6 +20,9 @@ public enum SQL_CRUD {
       """),
 
   PASSWORD_CHANGE("Try to change password", """
+      UPDATE player
+      SET password = ?
+      WHERE username = ?
       """),
 
   PLAYER_STATS("Gathers player stats for Entities.Player Account Scene", """
