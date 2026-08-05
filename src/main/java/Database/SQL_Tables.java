@@ -16,7 +16,7 @@ public enum SQL_Tables {
           password    TEXT NOT NULL,
           name        TEXT NOT NULL,
           character   INTEGER NOT NULL DEFAULT 0,
-          monstruos   TEXT DEFAULT NULL,
+          monstruos   TEXT NOT NULL DEFAULT 0,
           level       INTEGER NOT NULL DEFAULT 0,
           health      REAL NOT NULL DEFAULT 100.0,
           created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -57,7 +57,6 @@ public enum SQL_Tables {
   public String getSql() {
     return SQL;
   }
-
 
 
   /**
