@@ -62,7 +62,7 @@
    <left>
       <VBox alignment="CENTER" prefHeight="320.0" prefWidth="149.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button text="Battle!" />
+            <Button onAction="#goToBattleScene" text="Battle!" />
             <Button onAction="#logout" text="Logout" />
             <Button onAction="#updatePassword" text="Update Password" />
             <PasswordField fx:id="passwordField" promptText="Enter new password" />
