@@ -26,6 +26,8 @@ Issue if the team later decides to attempt it for extra credit._
 | #2 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 | #13 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 | #14 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
+| #29 | Ameen Hamdalla  | Theodore Faris | N/A | Approved/Merged |
+| #31 | Ameen Hamdalla  | Theodore Faris | N/A | Approved/Merged |
 
 ## AI Usage Log
 - **AI-drafted tests:** <link to TESTING.md / commit> — per owner.
