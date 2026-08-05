@@ -51,7 +51,6 @@ public final class SceneFactory {
       case LOGIN -> buildLogin();
       case CREATE_ACCOUNT -> buildCreateAccount();
       case PLAYER_ACCOUNT -> buildPlayerAccount(username);
-      case PLAYER_ACCOUNT -> buildPlayerAccount();
       case BATTLE -> buildBattle();
     };
   }

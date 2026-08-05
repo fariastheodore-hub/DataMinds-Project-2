@@ -45,6 +45,15 @@ public class PlayerAccountController {
   private PasswordField confirmPasswordField;
 
   /**
+   * Goes to battle scene
+   */
+  @FXML
+  private void goToBattleScene() {
+    Stage stage = (Stage) playerGreeting.getScene().getWindow();
+    stage.setScene(SceneFactory.create(SceneType.BATTLE));
+  }
+
+  /**
    * Logs out and goes back to login scene
    */
   @FXML
