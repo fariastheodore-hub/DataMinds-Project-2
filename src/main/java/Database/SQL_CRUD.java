@@ -29,8 +29,12 @@ public enum SQL_CRUD {
       SELECT password, name, character, monstruos, level, health
       FROM player
       WHERE username = ?
-      """)
+      """),
 
+  DELETE_ACCOUNT("Delete Account", """
+          DELETE FROM player
+          WHERE username = ?
+      """)
   //Add more SQL enums here.
   ;
 
@@ -41,6 +45,7 @@ public enum SQL_CRUD {
     DESCRIPTION = description;
     SQL = sql;
   }
+
   /**
    * sql getter
    *

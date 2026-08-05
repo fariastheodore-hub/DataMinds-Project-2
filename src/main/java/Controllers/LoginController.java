@@ -55,6 +55,7 @@ public class LoginController {
       PopupMessage.errorPopup("Login Error", "Wrong username or password");
     }
   }
+
   /**
    * Uses SceneFactory to create the Create Account scene and sets the scene.
    */

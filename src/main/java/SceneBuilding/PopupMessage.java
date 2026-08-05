@@ -3,6 +3,7 @@ package SceneBuilding;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
 
 /**
@@ -13,6 +14,7 @@ import javafx.util.Duration;
  * @since 8/2/2026
  */
 public interface PopupMessage {
+
   final int PAUSE_DURATION = 5000;
 
   /**
@@ -52,5 +54,26 @@ public interface PopupMessage {
     pause.setOnFinished(event -> {
       alert.close();
     });
+  }
+
+  /**
+   * Creates informational popup for account deletion
+   *
+   * @param title Title of popup.
+   * @param message Message in popup.
+   */
+  static boolean deleteAccount(String title, String message) {
+
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setTitle(title);
+    alert.setHeaderText(title);
+    alert.setContentText(message);
+    alert.showAndWait();
+    if (alert.getResult() == ButtonType.OK) {
+      return true;
+    } else if (alert.getResult() == ButtonType.CANCEL) {
+      return false;
+    }
+    return false;
   }
 }

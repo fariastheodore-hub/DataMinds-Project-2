@@ -12,26 +12,41 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * Controller for PlayerAccount scene
+ *
+ * @author Theodore Farias
+ * @version 0.1.0
+ * @since 8/2/2026
+ */
 public class PlayerAccountController {
 
-
+  // Current player
   private Player player;
 
+  // Custom player greeting
   @FXML
   private Label playerGreeting;
 
+  //Eventually the character image
   @FXML
   private ImageView characterImage;
 
+  //Health bar
   @FXML
   private ProgressBar healthProgressBar;
 
+  // Password field for changing password
   @FXML
   private PasswordField passwordField;
 
+  // Confirm password for changin password
   @FXML
   private PasswordField confirmPasswordField;
 
+  /**
+   * Logs out and goes back to login scene
+   */
   @FXML
   private void logout() {
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
@@ -40,6 +55,29 @@ public class PlayerAccountController {
     stage.setScene(SceneFactory.create(SceneType.LOGIN));
   }
 
+  /**
+   * Deletes player account
+   */
+  @FXML
+  private void deleteAccount() {
+    boolean result = PopupMessage.deleteAccount("Delete Account",
+        "Are you sure you want to delete your account?");
+    if (result) {
+      if (PlayerDao.deleteAccount(player.getUsername())) {
+        PopupMessage.successPopup("Account Deletion",
+            "Account has been successfully deleted, goodbye!");
+        Stage stage = (Stage) playerGreeting.getScene().getWindow();
+        player = null;
+        stage.setScene(SceneFactory.create(SceneType.LOGIN));
+      } else {
+        PopupMessage.errorPopup("Account Deletion", "Account was not deleted");
+      }
+    }
+  }
+
+  /**
+   * Updates player password
+   */
   @FXML
   private void updatePassword() {
     String password = passwordField.getText();
@@ -67,15 +105,22 @@ public class PlayerAccountController {
       PopupMessage.errorPopup("Account Creation Error", error);
       return;
     }
-    PopupMessage.successPopup("Password Changed", PlayerDao.createPlayer(username, password, name));
+    PopupMessage.successPopup("Password Change",
+        PlayerDao.updatePassword(player.getUsername(), password));
+    player.setPassword(password);
   }
 
+  //Initialization of FXML scene
   @FXML
   private void initialize() {
     playerGreeting.setText("Loading player...");
     healthProgressBar.setProgress(0.0);
   }
 
+  /**
+   * Loads player info into Player object
+   * @param username username to gather player info.
+   */
   public void loadPlayer(String username) {
     String[] playerStats = PlayerDao.getPlayerStats(username);
 
@@ -96,6 +141,9 @@ public class PlayerAccountController {
     updateDisplay();
   }
 
+  /**
+   * Updates the display with player name and current health.
+   */
   private void updateDisplay() {
     if (player == null) {
       return;
@@ -106,29 +154,34 @@ public class PlayerAccountController {
     healthProgressBar.setProgress(progress);
   }
 
-private boolean checkPassword(String password) {
-  short specialChars = 0;
-  short upperCaseChars = 0;
-  short lowerCaseChars = 0;
-  short numberChars = 0;
-  for (char ch : password.toCharArray()) {
-    if (ch == '!' || ch == '@' || ch == '#' || ch == '$' || ch == '%' || ch == '^' || ch == '&'
-        || ch == '*') {
-      specialChars++;
-      continue;
+  /**
+   * Checks password to make sure it fits criteria.
+   * @param password password to be checked.
+   * @return boolean result of checks.
+   */
+  private boolean checkPassword(String password) {
+    short specialChars = 0;
+    short upperCaseChars = 0;
+    short lowerCaseChars = 0;
+    short numberChars = 0;
+    for (char ch : password.toCharArray()) {
+      if (ch == '!' || ch == '@' || ch == '#' || ch == '$' || ch == '%' || ch == '^' || ch == '&'
+          || ch == '*') {
+        specialChars++;
+        continue;
+      }
+      if (Character.isUpperCase(ch)) {
+        upperCaseChars++;
+        continue;
+      }
+      if (Character.isLowerCase(ch)) {
+        lowerCaseChars++;
+        continue;
+      }
+      if (Character.isDigit(ch)) {
+        numberChars++;
+      }
     }
-    if (Character.isUpperCase(ch)) {
-      upperCaseChars++;
-      continue;
-    }
-    if (Character.isLowerCase(ch)) {
-      lowerCaseChars++;
-      continue;
-    }
-    if (Character.isDigit(ch)) {
-      numberChars++;
-    }
+    return specialChars > 0 && upperCaseChars > 0 && lowerCaseChars > 0 && numberChars > 0;
   }
-  return specialChars > 0 && upperCaseChars > 0 && lowerCaseChars > 0 && numberChars > 0;
-}
 }

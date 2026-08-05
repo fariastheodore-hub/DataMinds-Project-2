@@ -33,8 +33,7 @@ public interface PlayerDao {
     } catch (SQLException e) {
       if (e.getErrorCode() == 19) {
         return "Username already exists";
-      }
-      else {
+      } else {
         return e.getMessage();
       }
     }
@@ -47,7 +46,8 @@ public interface PlayerDao {
    * @return boolean result of whether the username and password combo were found.
    */
   static boolean checkLogin(String username, String password) {
-    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(SQL_CRUD.LOGIN_CHECK.getSql())) {
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
+        SQL_CRUD.LOGIN_CHECK.getSql())) {
       pstmt.setString(1, username.toLowerCase());
       ResultSet resultSet = pstmt.executeQuery();
       String result = resultSet.getString("password");
@@ -62,9 +62,15 @@ public interface PlayerDao {
     }
   }
 
+  /**
+   * Provides player stats from player table
+   * @param username username to search table
+   * @return String array of stat info.
+   */
   static String[] getPlayerStats(String username) {
     String[] stats = new String[6];
-    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(SQL_CRUD.PLAYER_STATS.getSql())) {
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
+        SQL_CRUD.PLAYER_STATS.getSql())) {
       pstmt.setString(1, username.toLowerCase());
       ResultSet resultSet = pstmt.executeQuery();
       stats[0] = resultSet.getString("password");
@@ -79,19 +85,42 @@ public interface PlayerDao {
     }
   }
 
+  /**
+   * Update password in player table
+   * @param username username of password to delete
+   * @param password new password.
+   * @return Message
+   */
   static String updatePassword(String username, String password) {
-    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(SQL_CRUD.PASSWORD_CHANGE.getSql())) {
-      pstmt.setString(1,password);
-      pstmt.setString(2,username);
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
+        SQL_CRUD.PASSWORD_CHANGE.getSql())) {
+      pstmt.setString(1, password);
+      pstmt.setString(2, username);
       pstmt.executeUpdate();
-      if(checkLogin(username, password)) {
+      if (checkLogin(username, password)) {
         return "Password successfully changed";
-      }
-      else {
+      } else {
         return "Password did not update!";
       }
     } catch (SQLException e) {
       return e.getMessage();
+    }
+  }
+
+  /**
+   * Delete user account from player table.
+   * @param username username to search.
+   * @return boolean result of deletion.
+   */
+  static boolean deleteAccount(String username) {
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
+        SQL_CRUD.DELETE_ACCOUNT.getSql())) {
+      pstmt.setString(1, username.toLowerCase());
+      int rowsDeleted = pstmt.executeUpdate();
+      return rowsDeleted > 0;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      return false;
     }
   }
 
