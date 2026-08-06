@@ -59,60 +59,15 @@ public class CreateAccountController {
     String name = nameField.getText();
     String password = passwordField.getText();
     String confirmPassword = confirmPasswordField.getText();
-    String error = "";
+    String[] fields = {username, name, password, confirmPassword};
+    ControllerCode code = ControllerOps.checkPassword(password, confirmPassword, fields);
 
-    if (username.isEmpty() || name.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-      error = "Please fill all the fields";
-      PopupMessage.errorPopup("Account Creation Error", error);
-      return;
+    if (code.getValue() < 0) {
+      PopupMessage.errorPopup("Account Creation", code.getMessage());
     }
-    if (password.length() < 8) {
-      error = "Password too short";
-      PopupMessage.errorPopup("Account Creation Error", error);
-      return;
+    else {
+      PopupMessage.successPopup("Account Creation", PlayerDao.createPlayer(username, password, name));
     }
-    if (!password.equals(confirmPassword)) {
-      error = "Passwords do not match";
-      PopupMessage.errorPopup("Account Creation Error", error);
 
-      return;
-    }
-    if (!checkPassword(password)) {
-      error = "Passwords must contain specified characters";
-      PopupMessage.errorPopup("Account Creation Error", error);
-      return;
-    }
-    PopupMessage.successPopup("Account Creation", PlayerDao.createPlayer(username, password, name));
-  }
-
-  /**
-   * Checks password entry to make sure it fits the specified criteria.
-   * @param password password to check
-   * @return boolean result of tests.
-   */
-  private boolean checkPassword(String password) {
-    short specialChars = 0;
-    short upperCaseChars = 0;
-    short lowerCaseChars = 0;
-    short numberChars = 0;
-    for (char ch : password.toCharArray()) {
-      if (ch == '!' || ch == '@' || ch == '#' || ch == '$' || ch == '%' || ch == '^' || ch == '&'
-          || ch == '*') {
-        specialChars++;
-        continue;
-      }
-      if (Character.isUpperCase(ch)) {
-        upperCaseChars++;
-        continue;
-      }
-      if (Character.isLowerCase(ch)) {
-        lowerCaseChars++;
-        continue;
-      }
-      if (Character.isDigit(ch)) {
-        numberChars++;
-      }
-    }
-    return specialChars > 0 && upperCaseChars > 0 && lowerCaseChars > 0 && numberChars > 0;
   }
 }
