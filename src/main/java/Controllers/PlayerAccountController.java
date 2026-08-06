@@ -91,32 +91,19 @@ public class PlayerAccountController {
   private void updatePassword() {
     String password = passwordField.getText();
     String confirmPassword = confirmPasswordField.getText();
-    String error = "";
+    String[] fields = {password, confirmPassword};
 
-    if (password.isEmpty() || confirmPassword.isEmpty()) {
-      error = "Please fill all the fields";
-      PopupMessage.errorPopup("Password Change Error", error);
-      return;
+    ControllerCode code = ControllerOps.checkPassword(password, confirmPassword, fields);
+    if (code.getValue() < 0) {
+      PopupMessage.errorPopup("Password Change", code.getMessage());
+    } else if (password.equals(player.getPassword())) {
+      PopupMessage.errorPopup("Password Change",
+          "The provided password is the same as the password on the account");
+    } else {
+      PopupMessage.successPopup("Password Change",
+          PlayerDao.updatePassword(player.getUsername(), password));
+      player.setPassword(password);
     }
-    if (password.length() < 8) {
-      error = "Password too short";
-      PopupMessage.errorPopup("Password Change Error", error);
-      return;
-    }
-    if (!password.equals(confirmPassword)) {
-      error = "Passwords do not match";
-      PopupMessage.errorPopup("Password Change Error", error);
-
-      return;
-    }
-    if (!checkPassword(password)) {
-      error = "Passwords must contain specified characters";
-      PopupMessage.errorPopup("Account Creation Error", error);
-      return;
-    }
-    PopupMessage.successPopup("Password Change",
-        PlayerDao.updatePassword(player.getUsername(), password));
-    player.setPassword(password);
   }
 
   //Initialization of FXML scene
@@ -161,36 +148,5 @@ public class PlayerAccountController {
 
     double progress = player.getHealth() / player.getMaxHealth();
     healthProgressBar.setProgress(progress);
-  }
-
-  /**
-   * Checks password to make sure it fits criteria.
-   * @param password password to be checked.
-   * @return boolean result of checks.
-   */
-  private boolean checkPassword(String password) {
-    short specialChars = 0;
-    short upperCaseChars = 0;
-    short lowerCaseChars = 0;
-    short numberChars = 0;
-    for (char ch : password.toCharArray()) {
-      if (ch == '!' || ch == '@' || ch == '#' || ch == '$' || ch == '%' || ch == '^' || ch == '&'
-          || ch == '*') {
-        specialChars++;
-        continue;
-      }
-      if (Character.isUpperCase(ch)) {
-        upperCaseChars++;
-        continue;
-      }
-      if (Character.isLowerCase(ch)) {
-        lowerCaseChars++;
-        continue;
-      }
-      if (Character.isDigit(ch)) {
-        numberChars++;
-      }
-    }
-    return specialChars > 0 && upperCaseChars > 0 && lowerCaseChars > 0 && numberChars > 0;
   }
 }

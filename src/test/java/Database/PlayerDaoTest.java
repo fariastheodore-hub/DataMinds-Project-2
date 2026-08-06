@@ -13,6 +13,7 @@ class PlayerDaoTest {
   @BeforeEach
   void setUp() {
     databaseManager = DatabaseManager.getInstance();
+    PlayerDao.deleteAccount("TheNewPlayer");
   }
 
   @AfterEach

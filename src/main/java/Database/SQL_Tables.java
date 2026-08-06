@@ -1,7 +1,7 @@
 package Database;
 
 /**
- * Enum for SQL Strings.
+ * Enum for SQL table creation strings.
  *
  * @author Theodore Farias
  * @version 0.1.0

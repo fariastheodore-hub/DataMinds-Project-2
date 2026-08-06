@@ -42,17 +42,13 @@ public class LoginController {
   private void checkLogin() {
     String username = usernameTextField.getText();
     String password = passwordTextField.getText();
-
-    if (username.isEmpty() || password.isEmpty()) {
-      PopupMessage.errorPopup("Login Error", "Please fill out all the fields");
-      return;
-    }
-    if (PlayerDao.checkLogin(username, password)) {
+    ControllerCode code = ControllerOps.checkLogin(username, password);
+    if (code.getValue() < 0) {
+      PopupMessage.errorPopup("Login Error", code.getMessage());
+    } else {
       PopupMessage.successPopup("Login Success", "Login Successful");
       Stage stage = (Stage) titleLabel.getScene().getWindow();
       stage.setScene(SceneFactory.create(SceneType.PLAYER_ACCOUNT, username));
-    } else {
-      PopupMessage.errorPopup("Login Error", "Wrong username or password");
     }
   }
 
