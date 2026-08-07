@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -17,9 +18,16 @@
         </font>
       </Label>
       <Region HBox.hgrow="ALWAYS" />
-      <ImageView fx:id="characterImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@images/GreenGuy.png" preserveRatio="true">
-        </Image>
+         <Button mnemonicParsing="false" text="Change Character" />
+      <ImageView fx:id="characterImage" fitHeight="128.0" fitWidth="128.0" layoutX="720.0"
+        layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+        <viewport>
+          <Rectangle2D height="474" minX="355" width="355"/>
+        </viewport>
+        <HBox.margin>
+          <Insets right="30.0"/>
+        </HBox.margin>
+        <Image preserveRatio="true" url="@images/Characters.png"/>
       </ImageView>
     </HBox>
   </top>
@@ -92,6 +100,74 @@
     </VBox>
   </left>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+         <ImageView fx:id="monstruoImage0" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+           <viewport>
+             <Rectangle2D height="474" minX="355" width="355"/>
+           </viewport>
+           <Image preserveRatio="true" url="@images/Monstruos.png">
+        </Image>
+
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+         </ImageView>
+            <ImageView fx:id="monstruoImage1" fitHeight="128.0" fitWidth="128.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+              <viewport>
+                <Rectangle2D height="474" minX="355" width="355"/>
+              </viewport>
+               <image>
+                  <Image preserveRatio="true" url="@images/Monstruos.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="monstruoImage2" fitHeight="128.0" fitWidth="128.0" layoutX="138.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+              <viewport>
+                <Rectangle2D height="474" minX="355" width="355"/>
+              </viewport>
+               <image>
+                  <Image preserveRatio="true" url="@images/Monstruos.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="monstruoImage3" fitHeight="128.0" fitWidth="128.0" layoutX="266.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+              <viewport>
+                <Rectangle2D height="474" minX="355" width="355"/>
+              </viewport>
+               <image>
+                  <Image preserveRatio="true" url="@images/Monstruos.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="monstruoImage4" fitHeight="128.0" fitWidth="128.0" layoutX="394.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+              <viewport>
+                <Rectangle2D height="474" minX="355" width="355"/>
+              </viewport>
+               <image>
+                  <Image preserveRatio="true" url="@images/Monstruos.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="monstruoImage5" fitHeight="128.0" fitWidth="128.0" layoutX="522.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+              <viewport>
+                <Rectangle2D height="474" minX="355" width="355"/>
+              </viewport>
+               <image>
+                  <Image preserveRatio="true" url="@images/Monstruos.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children></HBox>
    </bottom>
 </BorderPane>

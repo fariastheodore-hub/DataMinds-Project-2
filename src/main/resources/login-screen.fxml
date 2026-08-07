@@ -5,36 +5,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
 
   <center>
 
-    <VBox alignment="CENTER" prefHeight="410.0" prefWidth="543.0" spacing="20"
-      BorderPane.alignment="CENTER">
+    <VBox alignment="CENTER" prefHeight="410.0" prefWidth="543.0" spacing="20" BorderPane.alignment="CENTER">
       <padding>
-        <Insets bottom="20" left="20" right="20" top="20"/>
+        <Insets bottom="20" left="20" right="20" top="20" />
       </padding>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
         <children>
           <Label text="New to the game? ➡">
             <font>
-              <Font size="14.0"/>
+              <Font size="14.0" />
             </font>
           </Label>
           <Button onAction="#createAccount" text="Create account">
             <font>
-              <Font size="14.0"/>
+              <Font size="14.0" />
             </font>
           </Button>
         </children>
       </HBox>
-      <TextField fx:id="usernameTextField" maxWidth="300" promptText="Enter username"/>
-      <CheckBox mnemonicParsing="false" text="Show password"/>
-      <PasswordField fx:id="passwordTextField" maxWidth="300" promptText="Enter password"/>
+      <TextField fx:id="usernameTextField" maxWidth="300" promptText="Enter username" />
+      <CheckBox mnemonicParsing="false" text="Show password" />
+      <PasswordField fx:id="passwordTextField" maxWidth="300" promptText="Enter password" />
+      <TextField fx:id="visiblePassword" maxWidth="300" promptText="Enter password" visible="false" managed="false"/>
       <Button onAction="#checkLogin" text="Login">
         <font>
-          <Font size="14.0"/>
+          <Font size="14.0" />
         </font>
       </Button>
 
@@ -42,8 +41,7 @@
 
   </center>
   <top>
-    <Label fx:id="titleLabel" alignment="CENTER" prefHeight="155.0" prefWidth="197.0"
-      style="-fx-font-size: 25;" text="MONSTRUOS" BorderPane.alignment="CENTER"/>
+    <Label fx:id="titleLabel" alignment="CENTER" prefHeight="155.0" prefWidth="197.0" style="-fx-font-size: 25;" text="MONSTRUOS" BorderPane.alignment="CENTER" />
   </top>
 
 </BorderPane>
