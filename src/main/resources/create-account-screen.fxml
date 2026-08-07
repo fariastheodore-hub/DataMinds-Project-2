@@ -22,12 +22,12 @@
       <Label
         text="Password: Must be at least 8 characters long with at least one uppercase, one lowercase, one number and one special character (!@#$%^&amp;*)"/>
       <PasswordField fx:id="passwordField" maxWidth="300" promptText="Enter password"/>
-      <TextField fx:id="visiblePassword" visible="false" managed="false" maxWidth="300"
+      <TextField fx:id="visiblePasswordField" visible="false" managed="false" maxWidth="300"
         promptText="Enter password"/>
-      <CheckBox text="Show password"/>
+      <CheckBox text="Show password" onAction="#togglePasswordField"/>
       <PasswordField fx:id="confirmPasswordField" layoutX="300.0" layoutY="190.0" maxWidth="300"
         promptText="Confirm password"/>
-      <TextField fx:id="visibleConfirmPassword" visible="false" managed="false" maxWidth="300"
+      <TextField fx:id="visibleConfirmPasswordField" visible="false" managed="false" maxWidth="300"
         promptText="Confirm password"/>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
         <opaqueInsets>

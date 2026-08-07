@@ -22,17 +22,22 @@ import javafx.util.Duration;
  */
 public class LoginController {
 
+  private boolean passwordVisible = false;
+
   // Monstruos label
   @FXML
   private Label titleLabel;
 
   // Username field
   @FXML
-  private TextField usernameTextField;
+  private TextField usernameField;
 
   //Password field
   @FXML
-  private PasswordField passwordTextField;
+  private PasswordField passwordField;
+
+  @FXML
+  private TextField visiblePasswordField;
 
   /**
    * Checks if all fields are filled out, then communicates with PlayerDao to find matching if username and password match and rows
@@ -40,8 +45,16 @@ public class LoginController {
    */
   @FXML
   private void checkLogin() {
-    String username = usernameTextField.getText();
-    String password = passwordTextField.getText();
+    String username = usernameField.getText();
+    String password;
+
+    if (passwordVisible) {
+      password = visiblePasswordField.getText();
+    }
+    else {
+      password = passwordField.getText();
+    }
+
     ControllerCode code = ControllerOps.checkLogin(username, password);
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Login Error", code.getMessage());
@@ -60,5 +73,39 @@ public class LoginController {
     Stage stage = (Stage) titleLabel.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.CREATE_ACCOUNT));
   }
+
+  /**
+   * Adds username if coming from Create Account
+   * @param username
+   */
+  public void addUsername(String username) {
+    usernameField.setText(username);
+  }
+
+  /**
+   * Toggles between concealed and visible password
+   */
+  @FXML
+  private void togglePasswordField() {
+    if (!passwordVisible) {
+      visiblePasswordField.setText(passwordField.getText());
+      visiblePasswordField.setVisible(true);
+      visiblePasswordField.setManaged(true);
+
+      passwordField.setVisible(false);
+      passwordField.setManaged(false);
+      passwordVisible = true;
+    }
+    else {
+      passwordField.setText(visiblePasswordField.getText());
+      passwordField.setVisible(true);
+      passwordField.setManaged(true);
+
+      visiblePasswordField.setVisible(false);
+      visiblePasswordField.setManaged(false);
+      passwordVisible = false;
+    }
+  }
 }
+
 

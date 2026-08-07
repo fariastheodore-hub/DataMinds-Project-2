@@ -6,9 +6,12 @@ import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -20,6 +23,9 @@ import javafx.stage.Stage;
  * @since 8/2/2026
  */
 public class PlayerAccountController {
+
+  private boolean changePassword = false;
+  private boolean passwordVisible = false;
 
   // Current player
   private Player player;
@@ -40,9 +46,35 @@ public class PlayerAccountController {
   @FXML
   private PasswordField passwordField;
 
-  // Confirm password for changin password
+  // Visible password field
+  @FXML
+  private TextField visiblePasswordField;
+
+  // Confirm password for changing password
   @FXML
   private PasswordField confirmPasswordField;
+
+  // Visible confirm password field
+  @FXML
+  private TextField visibleConfirmPasswordField;
+
+  @FXML
+  private CheckBox showPasswordCheckBox;
+
+  @FXML
+  private Button changePasswordButton;
+
+  @FXML
+  private Button confirmChangeButton;
+
+  @FXML
+  private Button battleButton;
+
+  @FXML
+  private Button logoutButton;
+
+  @FXML
+  private Button deleteAccountButton;
 
   /**
    * Goes to battle scene
@@ -85,15 +117,70 @@ public class PlayerAccountController {
   }
 
   /**
+   * Opens and closes change password objects
+   */
+  @FXML
+  private void toggleChangePassword() {
+    if (!changePassword) {
+      passwordField.setVisible(true);
+      passwordField.setManaged(true);
+      confirmPasswordField.setVisible(true);
+      confirmPasswordField.setManaged(true);
+      showPasswordCheckBox.setVisible(true);
+      showPasswordCheckBox.setManaged(true);
+      confirmChangeButton.setVisible(true);
+      confirmChangeButton.setManaged(true);
+
+      battleButton.setVisible(false);
+      battleButton.setManaged(false);
+      logoutButton.setVisible(false);
+      logoutButton.setManaged(false);
+      deleteAccountButton.setVisible(false);
+      deleteAccountButton.setManaged(false);
+
+      changePasswordButton.setText("Never mind");
+      changePassword = true;
+    } else {
+      passwordField.setVisible(false);
+      passwordField.setManaged(false);
+      confirmPasswordField.setVisible(false);
+      confirmPasswordField.setManaged(false);
+      showPasswordCheckBox.setVisible(false);
+      showPasswordCheckBox.setManaged(false);
+      confirmChangeButton.setVisible(false);
+      confirmChangeButton.setManaged(false);
+
+      battleButton.setVisible(true);
+      battleButton.setManaged(true);
+      logoutButton.setVisible(true);
+      logoutButton.setManaged(true);
+      deleteAccountButton.setVisible(true);
+      deleteAccountButton.setManaged(true);
+
+      changePasswordButton.setText("Change Password");
+      changePassword = false;
+    }
+  }
+
+  /**
    * Updates player password
    */
   @FXML
   private void updatePassword() {
-    String password = passwordField.getText();
-    String confirmPassword = confirmPasswordField.getText();
-    String[] fields = {password, confirmPassword};
+    String password;
+    String confirmPassword;
 
+    if (passwordVisible) {
+      password = visiblePasswordField.getText();
+      confirmPassword = visibleConfirmPasswordField.getText();
+    } else {
+      password = passwordField.getText();
+      confirmPassword = confirmPasswordField.getText();
+    }
+
+    String[] fields = {password, confirmPassword};
     ControllerCode code = ControllerOps.checkPassword(password, confirmPassword, fields);
+
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Password Change", code.getMessage());
     } else if (PlayerDao.checkLogin(player.getUsername(), password)) {
@@ -102,6 +189,7 @@ public class PlayerAccountController {
     } else {
       PopupMessage.successPopup("Password Change",
           PlayerDao.updatePassword(player.getUsername(), password));
+      toggleChangePassword();
     }
   }
 
@@ -146,5 +234,45 @@ public class PlayerAccountController {
 
     double progress = player.getHealth() / player.getMaxHealth();
     healthProgressBar.setProgress(progress);
+  }
+
+  /**
+   * Toggles between concealed and visible password
+   */
+  @FXML
+  private void togglePasswordField() {
+    if (!passwordVisible) {
+      visiblePasswordField.setText(passwordField.getText());
+      visiblePasswordField.setVisible(true);
+      visiblePasswordField.setManaged(true);
+
+      visibleConfirmPasswordField.setText(confirmPasswordField.getText());
+      visibleConfirmPasswordField.setVisible(true);
+      visibleConfirmPasswordField.setManaged(true);
+
+      passwordField.setVisible(false);
+      passwordField.setManaged(false);
+
+      confirmPasswordField.setVisible(false);
+      confirmPasswordField.setManaged(false);
+
+      passwordVisible = true;
+    } else {
+      passwordField.setText(visiblePasswordField.getText());
+      passwordField.setVisible(true);
+      passwordField.setManaged(true);
+
+      confirmPasswordField.setText(visibleConfirmPasswordField.getText());
+      confirmPasswordField.setVisible(true);
+      confirmPasswordField.setManaged(true);
+
+      visiblePasswordField.setVisible(false);
+      visiblePasswordField.setManaged(false);
+
+      visibleConfirmPasswordField.setVisible(false);
+      visibleConfirmPasswordField.setManaged(false);
+
+      passwordVisible = false;
+    }
   }
 }
