@@ -23,16 +23,17 @@ public interface PlayerDao {
    * @return message based on result.
    */
   static String createPlayer(String username, String password, String name) {
+    String hashedPassword = PasswordHasher.hashPassword(password);
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PLAYER_ADD.getSql())) {
       pstmt.setString(1, username.toLowerCase());
-      pstmt.setString(2, password);
+      pstmt.setString(2, hashedPassword);
       pstmt.setString(3, name);
       pstmt.executeUpdate();
       return "Account successfully created";
     } catch (SQLException e) {
       if (e.getErrorCode() == 19) {
-        return "Username already exists";
+        return "Username already taken";
       } else {
         return e.getMessage();
       }
@@ -55,7 +56,7 @@ public interface PlayerDao {
         return false;
       }
       System.out.println(result);
-      return result.equals(password);
+      return PasswordHasher.verifyPassword(password, result);
     } catch (SQLException e) {
       System.err.println(e.getMessage());
       return false;
@@ -68,17 +69,16 @@ public interface PlayerDao {
    * @return String array of stat info.
    */
   static String[] getPlayerStats(String username) {
-    String[] stats = new String[6];
+    String[] stats = new String[5];
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PLAYER_STATS.getSql())) {
       pstmt.setString(1, username.toLowerCase());
       ResultSet resultSet = pstmt.executeQuery();
-      stats[0] = resultSet.getString("password");
-      stats[1] = resultSet.getString("name");
-      stats[2] = Integer.toString(resultSet.getInt("character"));
-      stats[3] = resultSet.getString("monstruos");
-      stats[4] = Integer.toString(resultSet.getInt("level"));
-      stats[5] = Float.toString(resultSet.getFloat("health"));
+      stats[0] = resultSet.getString("name");
+      stats[1] = Integer.toString(resultSet.getInt("character"));
+      stats[2] = resultSet.getString("monstruos");
+      stats[3] = Integer.toString(resultSet.getInt("level"));
+      stats[4] = Float.toString(resultSet.getFloat("health"));
       return stats;
     } catch (SQLException e) {
       return stats;
@@ -92,12 +92,13 @@ public interface PlayerDao {
    * @return Message
    */
   static String updatePassword(String username, String password) {
+    String hashedPassword = PasswordHasher.hashPassword(password);
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PASSWORD_CHANGE.getSql())) {
-      pstmt.setString(1, password);
+      pstmt.setString(1, hashedPassword);
       pstmt.setString(2, username);
-      pstmt.executeUpdate();
-      if (checkLogin(username, password)) {
+      int rowsUpdated = pstmt.executeUpdate();
+      if (rowsUpdated > 0) {
         return "Password successfully changed";
       } else {
         return "Password did not update!";

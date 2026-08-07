@@ -96,13 +96,12 @@ public class PlayerAccountController {
     ControllerCode code = ControllerOps.checkPassword(password, confirmPassword, fields);
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Password Change", code.getMessage());
-    } else if (password.equals(player.getPassword())) {
+    } else if (PlayerDao.checkLogin(player.getUsername(), password)) {
       PopupMessage.errorPopup("Password Change",
-          "The provided password is the same as the password on the account");
+          "Entered password matches current password");
     } else {
       PopupMessage.successPopup("Password Change",
           PlayerDao.updatePassword(player.getUsername(), password));
-      player.setPassword(password);
     }
   }
 
@@ -121,19 +120,18 @@ public class PlayerAccountController {
     String[] playerStats = PlayerDao.getPlayerStats(username);
 
     System.out.println(username);
-    if (playerStats == null || playerStats.length < 6) {
+    if (playerStats == null || playerStats.length < 5) {
       PopupMessage.errorPopup("Invalid Player", "No player found");
       playerGreeting.setText("Invalid Player");
       healthProgressBar.setProgress(0.0);
       return;
     }
-    String password = playerStats[0];
-    String name = playerStats[1];
-    int character = Integer.parseInt(playerStats[2]);
-    String monstruos = playerStats[3];
-    int level = Integer.parseInt(playerStats[4]);
-    float health = Float.parseFloat(playerStats[5]);
-    player = new Player(username, password, name, character, monstruos, level, health);
+    String name = playerStats[0];
+    int character = Integer.parseInt(playerStats[1]);
+    String monstruos = playerStats[2];
+    int level = Integer.parseInt(playerStats[3]);
+    float health = Float.parseFloat(playerStats[4]);
+    player = new Player(username, name, character, monstruos, level, health);
     updateDisplay();
   }
 
