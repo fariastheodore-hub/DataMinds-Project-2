@@ -26,7 +26,7 @@ public enum SQL_CRUD {
       """),
 
   PLAYER_STATS("Gathers player stats for Entities.Player Account Scene", """
-      SELECT password, name, character, monstruos, level, health
+      SELECT name, character, monstruos, level, health
       FROM player
       WHERE username = ?
       """),
