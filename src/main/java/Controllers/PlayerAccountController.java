@@ -1,11 +1,13 @@
 package Controllers;
 
 import Database.PlayerDao;
+import Entities.Characters;
 import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -26,6 +28,7 @@ public class PlayerAccountController {
 
   private boolean changePassword = false;
   private boolean passwordVisible = false;
+  private Characters[] characters;
 
   // Current player
   private Player player;
@@ -34,7 +37,7 @@ public class PlayerAccountController {
   @FXML
   private Label playerGreeting;
 
-  //Eventually the character image
+  //The character image
   @FXML
   private ImageView characterImage;
 
@@ -81,6 +84,7 @@ public class PlayerAccountController {
    */
   @FXML
   private void goToBattleScene() {
+    PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.BATTLE));
   }
@@ -92,6 +96,7 @@ public class PlayerAccountController {
   private void logout() {
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     PopupMessage.successPopup("Logout", "Logging out, goodbye " + player.getName() + "!");
+    PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
     player = null;
     stage.setScene(SceneFactory.create(SceneType.LOGIN));
   }
@@ -114,6 +119,20 @@ public class PlayerAccountController {
         PopupMessage.errorPopup("Account Deletion", "Account was not deleted");
       }
     }
+  }
+
+  @FXML
+  private void changeCharacter() {
+    int characterNum = player.getCharacter();
+    characterNum++;
+    if (characterNum >= characters.length) {
+      characterNum = 0;
+    }
+    Characters chosenCharacter = characters[characterNum];
+    characterImage.setViewport(
+        new Rectangle2D(chosenCharacter.getStartX(), chosenCharacter.getStartY(),
+            chosenCharacter.getSizeX(), chosenCharacter.getSizeY()));
+    player.setCharacter(characterNum);
   }
 
   /**
@@ -198,6 +217,7 @@ public class PlayerAccountController {
   private void initialize() {
     playerGreeting.setText("Loading player...");
     healthProgressBar.setProgress(0.0);
+    characters = Characters.values();
   }
 
   /**
@@ -224,7 +244,7 @@ public class PlayerAccountController {
   }
 
   /**
-   * Updates the display with player name and current health.
+   * Updates the display with player name and current health and current character.
    */
   private void updateDisplay() {
     if (player == null) {
@@ -234,6 +254,10 @@ public class PlayerAccountController {
 
     double progress = player.getHealth() / player.getMaxHealth();
     healthProgressBar.setProgress(progress);
+    Characters chosenCharacter = characters[player.getCharacter()];
+    characterImage.setViewport(
+        new Rectangle2D(chosenCharacter.getStartX(), chosenCharacter.getStartY(),
+            chosenCharacter.getSizeX(), chosenCharacter.getSizeY()));
   }
 
   /**
