@@ -5,7 +5,6 @@ package Entities;
  */
 public class Player {
   private String username;
-  private String password;
   private String name;
   private int character;
   private String monstruos;
@@ -17,16 +16,14 @@ public class Player {
   /**
    * Creates player object.
    * @param username
-   * @param password
    * @param name
    * @param character
    * @param monstruos
    * @param level
    * @param health
    */
-  public Player(String username, String password, String name, int character, String monstruos, int level, float health) {
+  public Player(String username, String name, int character, String monstruos, int level, float health) {
     this.username = username;
-    this.password = password;
     this.name = name;
     this.character = character;
     this.monstruos = monstruos;
@@ -41,14 +38,6 @@ public class Player {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getName() {
