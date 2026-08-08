@@ -109,6 +109,25 @@ public interface PlayerDao {
   }
 
   /**
+   * Updates the character column based on username.
+   * @param username active user username.
+   * @param character chosen character index.
+   * @return boolean result.
+   */
+  static boolean updateCharacter(String username, int character) {
+    try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
+        SQL_CRUD.UPDATE_CHARACTER.getSql())) {
+      pstmt.setString(1, Integer.toString(character));
+      pstmt.setString(2, username);
+      int rowsUpdated = pstmt.executeUpdate();
+      return rowsUpdated > 0;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      return false;
+    }
+  }
+
+  /**
    * Delete user account from player table.
    * @param username username to search.
    * @return boolean result of deletion.

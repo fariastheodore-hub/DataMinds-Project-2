@@ -32,9 +32,19 @@ public interface ControllerOps {
     }
   }
 
+  /**
+   * Checks password, confirm password and all fields.
+   * @param password entered password.
+   * @param confirmPassword entered confirm password.
+   * @param fields all fields that were submitted (username, name, password, etc.).
+   * @return Controller code result.
+   */
   static ControllerCode checkPassword(String password, String confirmPassword, String[] fields) {
     if (!checkFields(fields)) {
       return ControllerCode.EMPTY_FIELD;
+    }
+    if (fields[0].contains(" ")) {
+      return ControllerCode.USERNAME_CONTAINS_SPACE;
     }
     if (!checkPasswordLength(password)) {
       return ControllerCode.SHORT_PASSWORD;

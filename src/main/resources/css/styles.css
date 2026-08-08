@@ -17,3 +17,6 @@
 .button:hover {
   -fx-background-color: yellow;
 }
+.button:focused {
+  -fx-background-color: yellow;
+}

@@ -34,6 +34,12 @@ public enum SQL_CRUD {
   DELETE_ACCOUNT("Delete Account", """
           DELETE FROM player
           WHERE username = ?
+      """),
+
+  UPDATE_CHARACTER("Change character", """
+              UPDATE player
+              SET character = ?
+              WHERE username = ?
       """)
   //Add more SQL enums here.
   ;

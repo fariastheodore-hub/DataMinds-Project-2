@@ -2,8 +2,13 @@ package Entities;
 
 /**
  * Entities.Player that holds stats during gameplay.
+ *
+ * @author Theodore Farias
+ * @version 0.1.0
+ * @since 8/2/26
  */
 public class Player {
+
   private String username;
   private String name;
   private int character;
@@ -22,7 +27,8 @@ public class Player {
    * @param level
    * @param health
    */
-  public Player(String username, String name, int character, String monstruos, int level, float health) {
+  public Player(String username, String name, int character, String monstruos, int level,
+      float health) {
     this.username = username;
     this.name = name;
     this.character = character;

@@ -21,16 +21,15 @@ public enum SQL_Tables {
           health      REAL NOT NULL DEFAULT 100.0,
           created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
-      """),
-  // Add next enum here
+      """), // Add next enum here
   BATTLE_STATS_TABLE("battle_stats", """
-      CREATE TABLE IF NOT EXISTS battle_stats (
-         user_id      INTEGER PRIMARY KEY,
-         wins       INTEGER NOT NULL DEFAULT 0,
-         losses       INTEGER NOT NULL DEFAULT 0,
-         flees       INTEGER NOT NULL DEFAULT 0
-       )
-        """);
+          CREATE TABLE IF NOT EXISTS battle_stats (
+             user_id      INTEGER PRIMARY KEY,
+             wins       INTEGER NOT NULL DEFAULT 0,
+             losses       INTEGER NOT NULL DEFAULT 0,
+             flees       INTEGER NOT NULL DEFAULT 0
+           )
+          """);
 
   // Title of sql table.
   private final String TITLE;
