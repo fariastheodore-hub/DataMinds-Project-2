@@ -9,51 +9,47 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12"
-  xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PlayerAccountController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PlayerAccountController">
   <top>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
       <Label fx:id="playerGreeting">
         <font>
-          <Font size="32.0"/>
+          <Font size="32.0" />
         </font>
       </Label>
-      <Region HBox.hgrow="ALWAYS"/>
-      <Button onAction="#changeCharacter" text="Change Character"/>
-      <ImageView fx:id="characterImage" fitHeight="128.0" fitWidth="128.0" layoutX="720.0"
-        layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <Region HBox.hgrow="ALWAYS" />
+      <Button onAction="#changeCharacter" text="Change Character" />
+      <ImageView fx:id="characterImage" fitHeight="128.0" fitWidth="128.0" layoutX="720.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D/>
+          <Rectangle2D />
         </viewport>
         <HBox.margin>
-          <Insets right="30.0"/>
+          <Insets right="30.0" />
         </HBox.margin>
-        <Image preserveRatio="true" url="@images/Characters.png"/>
+        <Image preserveRatio="true" url="@images/Characters.png" />
       </ImageView>
     </HBox>
   </top>
   <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
   </padding>
   <right>
-    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0"
-      BorderPane.alignment="CENTER">
+    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
       <Label text="Health">
         <font>
-          <Font size="18.0"/>
+          <Font size="18.0" />
         </font>
       </Label>
-      <ProgressBar fx:id="healthProgressBar" maxWidth="200.0" minWidth="-Infinity"
-        prefWidth="150.0">
+      <ProgressBar fx:id="healthProgressBar" maxWidth="200.0" minWidth="-Infinity" prefWidth="150.0">
         <effect>
           <Lighting>
             <bumpInput>
-              <Shadow/>
+              <Shadow />
             </bumpInput>
             <light>
               <Light.Distant>
                 <color>
-                  <Color green="1.0" blue="0.21666666865348816"/>
+                  <Color green="1.0" blue="0.21666666865348816" />
                 </color>
               </Light.Distant>
             </light>
@@ -62,139 +58,124 @@
       </ProgressBar>
       <Label text="Level">
         <font>
-          <Font size="18.0"/>
+          <Font size="18.0" />
         </font>
         <VBox.margin>
-          <Insets top="10.0"/>
+          <Insets top="10.0" />
         </VBox.margin>
       </Label>
       <Label text="0">
         <font>
-          <Font size="14.0"/>
+          <Font size="14.0" />
         </font>
       </Label>
     </VBox>
   </right>
   <left>
-    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="200" spacing="20.0"
-      BorderPane.alignment="CENTER">
-      <Button fx:id="battleButton" onAction="#goToBattleScene" text="Battle!"/>
+    <VBox alignment="CENTER" prefHeight="400.0" prefWidth="200" spacing="20.0" BorderPane.alignment="CENTER">
+      <Button fx:id="battleButton" onAction="#goToBattleScene" text="Battle!" />
       <Button fx:id="logoutButton" onAction="#logout" text="Logout">
         <VBox.margin>
-          <Insets top="10.0"/>
+          <Insets top="10.0" />
         </VBox.margin>
       </Button>
       <Button fx:id="changePasswordButton" onAction="#toggleChangePassword" text="Change Password">
         <VBox.margin>
-          <Insets top="10.0"/>
+          <Insets top="10.0" />
         </VBox.margin>
       </Button>
-      <PasswordField fx:id="passwordField" managed="false" promptText="Enter new password"
-        visible="false"/>
-      <TextField fx:id="visiblePasswordField" managed="false" promptText="Enter new password"
-        visible="false"/>
-      <CheckBox fx:id="showPasswordCheckBox" managed="false" onAction="#togglePasswordField"
-        text="Show password" visible="false"/>
-      <PasswordField fx:id="confirmPasswordField" managed="false" promptText="Confirm password"
-        visible="false"/>
-      <TextField fx:id="visibleConfirmPasswordField" managed="false" promptText="Confirm password"
-        visible="false"/>
-      <Button fx:id="confirmChangeButton" managed="false" onAction="#updatePassword"
-        text="Confirm Change" visible="false"/>
+      <PasswordField fx:id="passwordField" managed="false" promptText="Enter new password" visible="false" />
+      <TextField fx:id="visiblePasswordField" managed="false" promptText="Enter new password" visible="false" />
+      <PasswordField fx:id="confirmPasswordField" managed="false" promptText="Confirm password" visible="false" />
+      <TextField fx:id="visibleConfirmPasswordField" managed="false" promptText="Confirm password" visible="false" />
+      <CheckBox fx:id="showPasswordCheckBox" managed="false" onAction="#togglePasswordField" text="Show password" visible="false" />
+      <Button fx:id="confirmChangeButton" managed="false" onAction="#updatePassword" text="Confirm Change" visible="false" />
       <Button fx:id="deleteAccountButton" onAction="#deleteAccount" text="Delete Account">
         <VBox.margin>
-          <Insets top="10.0"/>
+          <Insets top="10.0" />
         </VBox.margin>
       </Button>
     </VBox>
   </left>
   <bottom>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-      <ImageView onMouseClicked="#chooseMonstruo" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monstruoImage0" fitHeight="128.0" fitWidth="128.0" onMouseClicked="#chooseMonstruo" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="430" width="375"/>
+          <Rectangle2D height="430" width="375" />
         </viewport>
         <Image preserveRatio="true" url="@images/Monstruos.png">
         </Image>
 
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
       </ImageView>
-      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="10.0" layoutY="10.0"
-        pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monstruoImage1" fitHeight="128.0" fitWidth="128.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#chooseMonstruo" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="430" minX="375" width="375"/>
+          <Rectangle2D height="430" minX="375" width="375" />
         </viewport>
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
-        <Image preserveRatio="true" url="@images/Monstruos.png"/>
+        <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="138.0" layoutY="10.0"
-        pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monstruoImage2" fitHeight="128.0" fitWidth="128.0" layoutX="138.0" layoutY="10.0" onMouseClicked="#chooseMonstruo" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="430" minX="750" width="375"/>
+          <Rectangle2D height="430" minX="750" width="375" />
         </viewport>
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
-        <Image preserveRatio="true" url="@images/Monstruos.png"/>
+        <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="266.0" layoutY="10.0"
-        pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monstruoImage3" fitHeight="128.0" fitWidth="128.0" layoutX="266.0" layoutY="10.0" onMouseClicked="#chooseMonstruo" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="430" minY="430" width="375"/>
+          <Rectangle2D height="430" minY="430" width="375" />
         </viewport>
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
-        <Image preserveRatio="true" url="@images/Monstruos.png"/>
+        <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="394.0" layoutY="10.0"
-        pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monstruoImage4" fitHeight="128.0" fitWidth="128.0" layoutX="394.0" layoutY="10.0" onMouseClicked="#chooseMonstruo" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="430" minX="375" minY="430" width="375"/>
+          <Rectangle2D height="430" minX="375" minY="430" width="375" />
         </viewport>
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
-        <Image preserveRatio="true" url="@images/Monstruos.png"/>
+        <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="522.0" layoutY="10.0"
-        pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="monstruoImage5" fitHeight="128.0" fitWidth="128.0" layoutX="522.0" layoutY="10.0" onMouseClicked="#chooseMonstruo" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="430" minX="750" minY="430" width="375"/>
+          <Rectangle2D height="430" minX="750" minY="430" width="375" />
         </viewport>
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
-        <Image preserveRatio="true" url="@images/Monstruos.png"/>
+        <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
     </HBox>
   </bottom>
   <center>
-    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0"
-      BorderPane.alignment="CENTER">
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
       <Label text="Monstruo Buddy">
         <font>
-          <Font size="18.0"/>
+          <Font size="22.0" />
         </font>
       </Label>
       <ImageView fx:id="monstruoImage" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D/>
+          <Rectangle2D />
         </viewport>
         <cursor>
-          <Cursor fx:constant="HAND"/>
+          <Cursor fx:constant="HAND" />
         </cursor>
-        <image>
-          <Image preserveRatio="true" url="@images/Monstruos.png"/>
-        </image>
+        <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <Label text="Type: ">
+      <Label fx:id="monstruoInfo" alignment="CENTER" textAlignment="CENTER">
         <font>
-          <Font size="14.0"/>
+          <Font size="18.0" />
         </font>
       </Label>
     </VBox>

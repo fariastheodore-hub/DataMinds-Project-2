@@ -28,9 +28,9 @@
         </children>
       </HBox>
       <TextField fx:id="usernameField" maxWidth="300" promptText="Enter username" />
-      <CheckBox onAction="#togglePasswordField" text="Show password" />
       <PasswordField fx:id="passwordField" maxWidth="300" promptText="Enter password" />
-      <TextField fx:id="visiblePasswordField" maxWidth="300" promptText="Enter password" visible="false" managed="false"/>
+      <CheckBox onAction="#togglePasswordField" text="Show password" />
+      <TextField fx:id="visiblePasswordField" managed="false" maxWidth="300" promptText="Enter password" visible="false" />
       <Button onAction="#checkLogin" text="Login">
         <font>
           <Font size="14.0" />

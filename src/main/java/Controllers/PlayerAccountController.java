@@ -86,17 +86,7 @@ public class PlayerAccountController {
   private ImageView monstruoImage;
 
   @FXML
-  private ImageView monstruoImage0;
-  @FXML
-  private ImageView monstruoImage1;
-  @FXML
-  private ImageView monstruoImage2;
-  @FXML
-  private ImageView monstruoImage3;
-  @FXML
-  private ImageView monstruoImage4;
-  @FXML
-  private ImageView monstruoImage5;
+  private Label monstruoInfo;
 
   /**
    * Goes to battle scene
@@ -143,8 +133,50 @@ public class PlayerAccountController {
   @FXML
   private void chooseMonstruo(MouseEvent mouseEvent) {
     ImageView chosen = (ImageView) mouseEvent.getSource();
-    if (chosen == monstruoImage0)
-    monstruoImage.setViewport(new Rectangle2D());
+    switch (chosen.getId()) {
+      case "monstruoImage0" -> {
+        monstruoImage.setViewport(
+            new Rectangle2D(monstruos[0].getStartX(), monstruos[0].getStartY(),
+                monstruos[0].getSizeX(), monstruos[0].getSizeY()));
+        monstruoInfo.setText(
+            "Name: " + monstruos[0].getName() + "\nType: " + monstruos[0].getType());
+      }
+      case "monstruoImage1" -> {
+        monstruoImage.setViewport(
+            new Rectangle2D(monstruos[1].getStartX(), monstruos[1].getStartY(),
+                monstruos[1].getSizeX(), monstruos[1].getSizeY()));
+        monstruoInfo.setText(
+            "Name: " + monstruos[1].getName() + "\nType: " + monstruos[1].getType());
+      }
+      case "monstruoImage2" -> {
+        monstruoImage.setViewport(
+            new Rectangle2D(monstruos[2].getStartX(), monstruos[2].getStartY(),
+                monstruos[2].getSizeX(), monstruos[2].getSizeY()));
+        monstruoInfo.setText(
+            "Name: " + monstruos[2].getName() + "\nType: " + monstruos[2].getType());
+      }
+      case "monstruoImage3" -> {
+        monstruoImage.setViewport(
+            new Rectangle2D(monstruos[3].getStartX(), monstruos[3].getStartY(),
+                monstruos[3].getSizeX(), monstruos[3].getSizeY()));
+        monstruoInfo.setText(
+            "Name: " + monstruos[3].getName() + "\nType: " + monstruos[3].getType());
+      }
+      case "monstruoImage4" -> {
+        monstruoImage.setViewport(
+            new Rectangle2D(monstruos[4].getStartX(), monstruos[4].getStartY(),
+                monstruos[4].getSizeX(), monstruos[4].getSizeY()));
+        monstruoInfo.setText(
+            "Name: " + monstruos[4].getName() + "\nType: " + monstruos[4].getType());
+      }
+      case "monstruoImage5" -> {
+        monstruoImage.setViewport(
+            new Rectangle2D(monstruos[5].getStartX(), monstruos[5].getStartY(),
+                monstruos[5].getSizeX(), monstruos[5].getSizeY()));
+        monstruoInfo.setText(
+            "Name: " + monstruos[5].getName() + "\nType: " + monstruos[5].getType());
+      }
+    }
   }
 
   @FXML
