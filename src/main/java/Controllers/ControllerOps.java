@@ -36,6 +36,9 @@ public interface ControllerOps {
     if (!checkFields(fields)) {
       return ControllerCode.EMPTY_FIELD;
     }
+    if (fields[0].contains(" ")) {
+      return ControllerCode.USERNAME_CONTAINS_SPACE;
+    }
     if (!checkPasswordLength(password)) {
       return ControllerCode.SHORT_PASSWORD;
     }

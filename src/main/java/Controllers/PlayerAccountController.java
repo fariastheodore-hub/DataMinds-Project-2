@@ -2,6 +2,7 @@ package Controllers;
 
 import Database.PlayerDao;
 import Entities.Characters;
+import Entities.Monstruos;
 import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
@@ -218,6 +219,7 @@ public class PlayerAccountController {
     playerGreeting.setText("Loading player...");
     healthProgressBar.setProgress(0.0);
     characters = Characters.values();
+    Monstruos[] monstruos = Monstruos.values();
   }
 
   /**

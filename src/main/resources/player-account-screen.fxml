@@ -21,7 +21,7 @@
       <Button onAction="#changeCharacter" text="Change Character" />
       <ImageView fx:id="characterImage" fitHeight="128.0" fitWidth="128.0" layoutX="720.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D/>
+          <Rectangle2D />
         </viewport>
         <HBox.margin>
           <Insets right="30.0" />
@@ -99,9 +99,9 @@
   </left>
   <bottom>
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-      <ImageView fx:id="monstruoImage0" fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="474" minX="355" width="355" />
+          <Rectangle2D height="430" width="375" />
         </viewport>
         <Image preserveRatio="true" url="@images/Monstruos.png">
         </Image>
@@ -110,45 +110,45 @@
           <Cursor fx:constant="HAND" />
         </cursor>
       </ImageView>
-      <ImageView fx:id="monstruoImage1" fitHeight="128.0" fitWidth="128.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="474" minX="355" width="355" />
+          <Rectangle2D height="430" minX="375" width="375" />
         </viewport>
         <cursor>
           <Cursor fx:constant="HAND" />
         </cursor>
         <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fx:id="monstruoImage2" fitHeight="128.0" fitWidth="128.0" layoutX="138.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="138.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="474" minX="355" width="355" />
+          <Rectangle2D height="430" minX="750" width="375" />
         </viewport>
         <cursor>
           <Cursor fx:constant="HAND" />
         </cursor>
         <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fx:id="monstruoImage3" fitHeight="128.0" fitWidth="128.0" layoutX="266.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="266.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="474" minX="355" width="355" />
+          <Rectangle2D height="430" minY="430" width="375" />
         </viewport>
         <cursor>
           <Cursor fx:constant="HAND" />
         </cursor>
         <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fx:id="monstruoImage4" fitHeight="128.0" fitWidth="128.0" layoutX="394.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="394.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="474" minX="355" width="355" />
+          <Rectangle2D height="430" minX="375" minY="430" width="375" />
         </viewport>
         <cursor>
           <Cursor fx:constant="HAND" />
         </cursor>
         <Image preserveRatio="true" url="@images/Monstruos.png" />
       </ImageView>
-      <ImageView fx:id="monstruoImage5" fitHeight="128.0" fitWidth="128.0" layoutX="522.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="522.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
         <viewport>
-          <Rectangle2D height="474" minX="355" width="355" />
+          <Rectangle2D height="430" minX="750" minY="430" width="375" />
         </viewport>
         <cursor>
           <Cursor fx:constant="HAND" />
@@ -157,4 +157,7 @@
       </ImageView>
     </HBox>
   </bottom>
+   <center>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
