@@ -37,10 +37,10 @@ public enum SQL_CRUD {
       """),
 
   UPDATE_CHARACTER("Change character", """
-          UPDATE player
-          SET character = ?
-          WHERE username = ?
-  """)
+              UPDATE player
+              SET character = ?
+              WHERE username = ?
+      """)
   //Add more SQL enums here.
   ;
 

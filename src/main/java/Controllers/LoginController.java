@@ -22,6 +22,7 @@ import javafx.util.Duration;
  */
 public class LoginController {
 
+  // Is show password checkbox checked?
   private boolean passwordVisible = false;
 
   // Monstruos label
@@ -36,6 +37,7 @@ public class LoginController {
   @FXML
   private PasswordField passwordField;
 
+  // Visible password field
   @FXML
   private TextField visiblePasswordField;
 
@@ -48,10 +50,10 @@ public class LoginController {
     String username = usernameField.getText();
     String password;
 
+    // Choose password field based on whether we have visible TextField active or not.
     if (passwordVisible) {
       password = visiblePasswordField.getText();
-    }
-    else {
+    } else {
       password = passwordField.getText();
     }
 
@@ -76,31 +78,34 @@ public class LoginController {
 
   /**
    * Adds username if coming from Create Account
-   * @param username
+   * @param username from Creat Account scene.
    */
   public void addUsername(String username) {
     usernameField.setText(username);
   }
 
   /**
-   * Toggles between concealed and visible password
+   * Toggles between concealed and visible password. Passes entry between them.
    */
   @FXML
   private void togglePasswordField() {
     if (!passwordVisible) {
+      // Show the visible password TextField and manage it.
       visiblePasswordField.setText(passwordField.getText());
       visiblePasswordField.setVisible(true);
       visiblePasswordField.setManaged(true);
 
+      // Hide and don't manage the hidden character PasswordField.
       passwordField.setVisible(false);
       passwordField.setManaged(false);
       passwordVisible = true;
-    }
-    else {
+    } else {
+      // Show and manage the hidden character PasswordField.
       passwordField.setText(visiblePasswordField.getText());
       passwordField.setVisible(true);
       passwordField.setManaged(true);
 
+      // Hide and don't manage the visible password TextField.
       visiblePasswordField.setVisible(false);
       visiblePasswordField.setManaged(false);
       passwordVisible = false;

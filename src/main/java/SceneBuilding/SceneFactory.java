@@ -121,7 +121,7 @@ public final class SceneFactory {
 
 
   /*
-  * Builds the battle scene
+   * Builds the battle scene
    */
   private static Scene buildBattle() {
     try {

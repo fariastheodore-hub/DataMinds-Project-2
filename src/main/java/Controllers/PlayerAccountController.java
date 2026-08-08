@@ -7,6 +7,7 @@ import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
+import java.io.File;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -28,9 +29,16 @@ import javafx.stage.Stage;
  */
 public class PlayerAccountController {
 
+  // Are we in the change password UI mode?
   private boolean changePassword = false;
+
+  // Is show password checkbox checked?
   private boolean passwordVisible = false;
+
+  // Array of available Characters enums.
   private Characters[] characters;
+
+  // Array of available Monstruos enums.
   private Monstruos[] monstruos;
 
   // Current player
@@ -64,36 +72,50 @@ public class PlayerAccountController {
   @FXML
   private TextField visibleConfirmPasswordField;
 
+  // Show password checkbox
   @FXML
   private CheckBox showPasswordCheckBox;
 
+  // Change password button to start change password UI mode.
   @FXML
   private Button changePasswordButton;
 
+  // Confirm change of password button.
   @FXML
   private Button confirmChangeButton;
 
+  // Start a battle button.
   @FXML
   private Button battleButton;
 
+  // logout button.
   @FXML
   private Button logoutButton;
 
+  // Delete account button.
   @FXML
   private Button deleteAccountButton;
 
+  // Chosen Monstruo image.
   @FXML
   private ImageView monstruoImage;
 
+  // Label showing chosen Monstruo name.
   @FXML
-  private Label monstruoInfo;
+  private Label monstruoName;
+
+  // Label showing chosen Monstruo type.
+  @FXML
+  private Label monstruoType;
 
   /**
    * Goes to battle scene
    */
   @FXML
   private void goToBattleScene() {
+    // Save chosen character in DB before leaving scene.
     PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
+
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.BATTLE));
   }
@@ -105,6 +127,8 @@ public class PlayerAccountController {
   private void logout() {
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     PopupMessage.successPopup("Logout", "Logging out, goodbye " + player.getName() + "!");
+
+    // Update chosen character in DB before leaving scene.
     PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
     player = null;
     stage.setScene(SceneFactory.create(SceneType.LOGIN));
@@ -130,55 +154,65 @@ public class PlayerAccountController {
     }
   }
 
+  /**
+   * Passes chosen Monstruo from image that user clicks on to chosen Monstruo image.
+   * @param mouseEvent the click event from mouse.
+   */
   @FXML
   private void chooseMonstruo(MouseEvent mouseEvent) {
     ImageView chosen = (ImageView) mouseEvent.getSource();
+
+    // Switch based on which image was clicked.
     switch (chosen.getId()) {
       case "monstruoImage0" -> {
         monstruoImage.setViewport(
             new Rectangle2D(monstruos[0].getStartX(), monstruos[0].getStartY(),
                 monstruos[0].getSizeX(), monstruos[0].getSizeY()));
-        monstruoInfo.setText(
-            "Name: " + monstruos[0].getName() + "\nType: " + monstruos[0].getType());
+        monstruoName.setText("Name: " + monstruos[0].getName());
+        monstruoType.setText("Type: " + monstruos[0].getType());
       }
       case "monstruoImage1" -> {
         monstruoImage.setViewport(
             new Rectangle2D(monstruos[1].getStartX(), monstruos[1].getStartY(),
                 monstruos[1].getSizeX(), monstruos[1].getSizeY()));
-        monstruoInfo.setText(
-            "Name: " + monstruos[1].getName() + "\nType: " + monstruos[1].getType());
+        monstruoName.setText("Name: " + monstruos[1].getName());
+        monstruoType.setText("Type: " + monstruos[1].getType());
       }
       case "monstruoImage2" -> {
         monstruoImage.setViewport(
             new Rectangle2D(monstruos[2].getStartX(), monstruos[2].getStartY(),
                 monstruos[2].getSizeX(), monstruos[2].getSizeY()));
-        monstruoInfo.setText(
-            "Name: " + monstruos[2].getName() + "\nType: " + monstruos[2].getType());
+        monstruoName.setText("Name: " + monstruos[2].getName());
+        monstruoType.setText("Type: " + monstruos[2].getType());
       }
       case "monstruoImage3" -> {
         monstruoImage.setViewport(
             new Rectangle2D(monstruos[3].getStartX(), monstruos[3].getStartY(),
                 monstruos[3].getSizeX(), monstruos[3].getSizeY()));
-        monstruoInfo.setText(
-            "Name: " + monstruos[3].getName() + "\nType: " + monstruos[3].getType());
+        monstruoName.setText("Name: " + monstruos[3].getName());
+        monstruoType.setText("Type: " + monstruos[3].getType());
       }
       case "monstruoImage4" -> {
         monstruoImage.setViewport(
             new Rectangle2D(monstruos[4].getStartX(), monstruos[4].getStartY(),
                 monstruos[4].getSizeX(), monstruos[4].getSizeY()));
-        monstruoInfo.setText(
-            "Name: " + monstruos[4].getName() + "\nType: " + monstruos[4].getType());
+        monstruoName.setText("Name: " + monstruos[4].getName());
+        monstruoType.setText("Type: " + monstruos[4].getType());
       }
       case "monstruoImage5" -> {
         monstruoImage.setViewport(
             new Rectangle2D(monstruos[5].getStartX(), monstruos[5].getStartY(),
                 monstruos[5].getSizeX(), monstruos[5].getSizeY()));
-        monstruoInfo.setText(
-            "Name: " + monstruos[5].getName() + "\nType: " + monstruos[5].getType());
+        monstruoName.setText("Name: " + monstruos[5].getName());
+        monstruoType.setText("Type: " + monstruos[5].getType());
       }
     }
   }
 
+  /**
+   * Cycles through the available characters. Only saves character in player field until we leave the scene
+   * so we don't have many writes to database.
+   */
   @FXML
   private void changeCharacter() {
     int characterNum = player.getCharacter();
@@ -199,6 +233,7 @@ public class PlayerAccountController {
   @FXML
   private void toggleChangePassword() {
     if (!changePassword) {
+      // Make all the change password UI visible and managed.
       passwordField.setVisible(true);
       passwordField.setManaged(true);
       confirmPasswordField.setVisible(true);
@@ -208,6 +243,7 @@ public class PlayerAccountController {
       confirmChangeButton.setVisible(true);
       confirmChangeButton.setManaged(true);
 
+      // Make the other buttons not visible or managed.
       battleButton.setVisible(false);
       battleButton.setManaged(false);
       logoutButton.setVisible(false);
@@ -218,6 +254,7 @@ public class PlayerAccountController {
       changePasswordButton.setText("Never mind");
       changePassword = true;
     } else {
+      // Make all the change password UI not visible or managed.
       passwordField.setVisible(false);
       passwordField.setManaged(false);
       confirmPasswordField.setVisible(false);
@@ -226,7 +263,12 @@ public class PlayerAccountController {
       showPasswordCheckBox.setManaged(false);
       confirmChangeButton.setVisible(false);
       confirmChangeButton.setManaged(false);
+      visiblePasswordField.setVisible(false);
+      visiblePasswordField.setManaged(false);
+      visibleConfirmPasswordField.setVisible(false);
+      visibleConfirmPasswordField.setManaged(false);
 
+      // Make all the regular buttons visible and managed.
       battleButton.setVisible(true);
       battleButton.setManaged(true);
       logoutButton.setVisible(true);
@@ -261,8 +303,7 @@ public class PlayerAccountController {
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Password Change", code.getMessage());
     } else if (PlayerDao.checkLogin(player.getUsername(), password)) {
-      PopupMessage.errorPopup("Password Change",
-          "Entered password matches current password");
+      PopupMessage.errorPopup("Password Change", "Entered password matches current password");
     } else {
       PopupMessage.successPopup("Password Change",
           PlayerDao.updatePassword(player.getUsername(), password));
@@ -270,7 +311,9 @@ public class PlayerAccountController {
     }
   }
 
-  //Initialization of FXML scene
+  /**
+   * Runs and initialization of FXML scene.
+   */
   @FXML
   private void initialize() {
     playerGreeting.setText("Loading player...");
@@ -325,6 +368,7 @@ public class PlayerAccountController {
   @FXML
   private void togglePasswordField() {
     if (!passwordVisible) {
+      // Make the visible password TextFields visible and managed.
       visiblePasswordField.setText(passwordField.getText());
       visiblePasswordField.setVisible(true);
       visiblePasswordField.setManaged(true);
@@ -333,6 +377,7 @@ public class PlayerAccountController {
       visibleConfirmPasswordField.setVisible(true);
       visibleConfirmPasswordField.setManaged(true);
 
+      // Make the hidden character PasswordFields not managed nor visible.
       passwordField.setVisible(false);
       passwordField.setManaged(false);
 
@@ -341,6 +386,7 @@ public class PlayerAccountController {
 
       passwordVisible = true;
     } else {
+      // Make the hidden character PasswordFields managed and visible.
       passwordField.setText(visiblePasswordField.getText());
       passwordField.setVisible(true);
       passwordField.setManaged(true);
@@ -349,6 +395,7 @@ public class PlayerAccountController {
       confirmPasswordField.setVisible(true);
       confirmPasswordField.setManaged(true);
 
+      // Make the visible character TextFields not visible nor managed.
       visiblePasswordField.setVisible(false);
       visiblePasswordField.setManaged(false);
 

@@ -19,6 +19,7 @@ import SceneBuilding.SceneFactory;
  */
 public class CreateAccountController {
 
+  // Is show password checkbox checked?
   private boolean passwordVisible = false;
 
   // Monstruos label
@@ -45,6 +46,7 @@ public class CreateAccountController {
   @FXML
   private PasswordField confirmPasswordField;
 
+  // Visible confirm password field
   @FXML
   private TextField visibleConfirmPasswordField;
 
@@ -69,11 +71,11 @@ public class CreateAccountController {
     String password;
     String confirmPassword;
 
+    // Choose passwords based on if we are using the visible TextFields or not.
     if (passwordVisible) {
       password = visiblePasswordField.getText();
       confirmPassword = visibleConfirmPasswordField.getText();
-    }
-    else {
+    } else {
       password = passwordField.getText();
       confirmPassword = confirmPasswordField.getText();
     }
@@ -83,9 +85,9 @@ public class CreateAccountController {
 
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Account Creation", code.getMessage());
-    }
-    else {
-      PopupMessage.successPopup("Account Creation", PlayerDao.createPlayer(username, password, name));
+    } else {
+      PopupMessage.successPopup("Account Creation",
+          PlayerDao.createPlayer(username, password, name));
       Stage stage = (Stage) titleLabel.getScene().getWindow();
       stage.setScene(SceneFactory.create(SceneType.LOGIN, username));
     }
@@ -93,11 +95,12 @@ public class CreateAccountController {
   }
 
   /**
-   * Toggles between concealed and visible password
+   * Toggles between concealed and visible password. Passes entry between them.
    */
   @FXML
   private void togglePasswordField() {
     if (!passwordVisible) {
+      // Make the visible password TexFields visible and managed.
       visiblePasswordField.setText(passwordField.getText());
       visiblePasswordField.setVisible(true);
       visiblePasswordField.setManaged(true);
@@ -106,6 +109,7 @@ public class CreateAccountController {
       visibleConfirmPasswordField.setVisible(true);
       visibleConfirmPasswordField.setManaged(true);
 
+      // Make the hidden character PasswordFields not visible and not managed.
       passwordField.setVisible(false);
       passwordField.setManaged(false);
 
@@ -113,8 +117,8 @@ public class CreateAccountController {
       confirmPasswordField.setManaged(false);
 
       passwordVisible = true;
-    }
-    else {
+    } else {
+      // Make the hidden character PasswordFields visible and managed.
       passwordField.setText(visiblePasswordField.getText());
       passwordField.setVisible(true);
       passwordField.setManaged(true);
@@ -123,6 +127,7 @@ public class CreateAccountController {
       confirmPasswordField.setVisible(true);
       confirmPasswordField.setManaged(true);
 
+      // Make the visible password TextFields hidden and not managed.
       visiblePasswordField.setVisible(false);
       visiblePasswordField.setManaged(false);
 
