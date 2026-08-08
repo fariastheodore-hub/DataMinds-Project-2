@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +31,7 @@ public class PlayerAccountController {
   private boolean changePassword = false;
   private boolean passwordVisible = false;
   private Characters[] characters;
+  private Monstruos[] monstruos;
 
   // Current player
   private Player player;
@@ -80,6 +82,22 @@ public class PlayerAccountController {
   @FXML
   private Button deleteAccountButton;
 
+  @FXML
+  private ImageView monstruoImage;
+
+  @FXML
+  private ImageView monstruoImage0;
+  @FXML
+  private ImageView monstruoImage1;
+  @FXML
+  private ImageView monstruoImage2;
+  @FXML
+  private ImageView monstruoImage3;
+  @FXML
+  private ImageView monstruoImage4;
+  @FXML
+  private ImageView monstruoImage5;
+
   /**
    * Goes to battle scene
    */
@@ -120,6 +138,13 @@ public class PlayerAccountController {
         PopupMessage.errorPopup("Account Deletion", "Account was not deleted");
       }
     }
+  }
+
+  @FXML
+  private void chooseMonstruo(MouseEvent mouseEvent) {
+    ImageView chosen = (ImageView) mouseEvent.getSource();
+    if (chosen == monstruoImage0)
+    monstruoImage.setViewport(new Rectangle2D());
   }
 
   @FXML
@@ -219,7 +244,7 @@ public class PlayerAccountController {
     playerGreeting.setText("Loading player...");
     healthProgressBar.setProgress(0.0);
     characters = Characters.values();
-    Monstruos[] monstruos = Monstruos.values();
+    monstruos = Monstruos.values();
   }
 
   /**
