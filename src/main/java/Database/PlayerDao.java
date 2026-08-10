@@ -20,9 +20,9 @@ public interface PlayerDao {
    * @param username Entities.Player entered username.
    * @param password Entities.Player entered password.
    * @param name Entities.Player entered display name
-   * @return message based on result.
+   * @return DaoCode based on result.
    */
-  static String createPlayer(String username, String password, String name) {
+  static DaoCode createPlayer(String username, String password, String name) {
     String hashedPassword = PasswordHasher.hashPassword(password);
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PLAYER_ADD.getSql())) {
@@ -30,12 +30,12 @@ public interface PlayerDao {
       pstmt.setString(2, hashedPassword);
       pstmt.setString(3, name);
       pstmt.executeUpdate();
-      return "Account successfully created";
+      return DaoCode.CREATION_SUCCESS;
     } catch (SQLException e) {
       if (e.getErrorCode() == 19) {
-        return "Username already taken";
+        return DaoCode.USERNAME_TAKEN;
       } else {
-        return e.getMessage();
+        return DaoCode.CREATION_FAILURE;
       }
     }
   }
@@ -44,22 +44,23 @@ public interface PlayerDao {
    * Checks the passed login credentials against the database.
    * @param username Entities.Player provided username.
    * @param password Entities.Player provided password.
-   * @return boolean result of whether the username and password combo were found.
+   * @return DaoCode result of whether the username and password combo were found.
    */
-  static boolean checkLogin(String username, String password) {
+  static DaoCode checkLogin(String username, String password) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.LOGIN_CHECK.getSql())) {
       pstmt.setString(1, username.toLowerCase());
       ResultSet resultSet = pstmt.executeQuery();
       String result = resultSet.getString("password");
       if (result == null) {
-        return false;
+        return DaoCode.LOGIN_FAILURE;
       }
-      System.out.println(result);
-      return PasswordHasher.verifyPassword(password, result);
+      if (PasswordHasher.verifyPassword(password, result)) {
+        return DaoCode.LOGIN_SUCCESS;
+      }
+      else return DaoCode.LOGIN_FAILURE;
     } catch (SQLException e) {
-      System.err.println(e.getMessage());
-      return false;
+      return DaoCode.LOGIN_FAILURE;
     }
   }
 
@@ -89,9 +90,9 @@ public interface PlayerDao {
    * Update password in player table
    * @param username username of password to delete
    * @param password new password.
-   * @return Message
+   * @return DaoCode result
    */
-  static String updatePassword(String username, String password) {
+  static DaoCode updatePassword(String username, String password) {
     String hashedPassword = PasswordHasher.hashPassword(password);
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PASSWORD_CHANGE.getSql())) {
@@ -99,12 +100,12 @@ public interface PlayerDao {
       pstmt.setString(2, username);
       int rowsUpdated = pstmt.executeUpdate();
       if (rowsUpdated > 0) {
-        return "Password successfully changed";
+        return DaoCode.PASSWORD_UPDATE_SUCCESS;
       } else {
-        return "Password did not update!";
+        return DaoCode.PASSWORD_UPDATE_FAILURE;
       }
     } catch (SQLException e) {
-      return e.getMessage();
+      return DaoCode.PASSWORD_UPDATE_FAILURE;
     }
   }
 
@@ -112,35 +113,42 @@ public interface PlayerDao {
    * Updates the character column based on username.
    * @param username active user username.
    * @param character chosen character index.
-   * @return boolean result.
+   * @return DaoCode result.
    */
-  static boolean updateCharacter(String username, int character) {
+  static DaoCode updateCharacter(String username, int character) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.UPDATE_CHARACTER.getSql())) {
       pstmt.setString(1, Integer.toString(character));
       pstmt.setString(2, username);
       int rowsUpdated = pstmt.executeUpdate();
-      return rowsUpdated > 0;
+      if (rowsUpdated > 0) {
+        return DaoCode.CHARACTER_UPDATE_SUCCESS;
+      } else {
+        return DaoCode.CHARACTER_UPDATE_FAILURE;
+      }
     } catch (SQLException e) {
-      System.err.println(e.getMessage());
-      return false;
+      return DaoCode.CHARACTER_UPDATE_FAILURE;
     }
   }
 
   /**
    * Delete user account from player table.
    * @param username username to search.
-   * @return boolean result of deletion.
+   * @return DaoCode result of deletion.
    */
-  static boolean deleteAccount(String username) {
+  static DaoCode deleteAccount(String username) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.DELETE_ACCOUNT.getSql())) {
       pstmt.setString(1, username.toLowerCase());
       int rowsDeleted = pstmt.executeUpdate();
-      return rowsDeleted > 0;
+      if (rowsDeleted > 0) {
+        return DaoCode.ACCOUNT_DELETE_SUCCESS;
+      } else {
+        return DaoCode.ACCOUNT_DELETE_FAILURE;
+      }
     } catch (SQLException e) {
       System.err.println(e.getMessage());
-      return false;
+      return DaoCode.ACCOUNT_DELETE_FAILURE;
     }
   }
 

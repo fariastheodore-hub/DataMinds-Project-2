@@ -62,7 +62,7 @@ public interface PopupMessage {
    * @param title Title of popup.
    * @param message Message in popup.
    */
-  static boolean deleteAccount(String title, String message) {
+  static boolean confirmChoice(String title, String message) {
 
     Alert alert = new Alert(AlertType.CONFIRMATION);
     alert.setTitle(title);

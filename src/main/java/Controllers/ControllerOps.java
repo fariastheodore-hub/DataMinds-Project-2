@@ -1,10 +1,6 @@
 package Controllers;
 
 import Database.PlayerDao;
-import SceneBuilding.PopupMessage;
-import SceneBuilding.SceneFactory;
-import SceneBuilding.SceneType;
-import javafx.stage.Stage;
 
 /**
  * Performs operations for scene controllers
@@ -25,7 +21,7 @@ public interface ControllerOps {
     if (username.isEmpty() || password.isEmpty()) {
       return ControllerCode.EMPTY_FIELD;
     }
-    if (PlayerDao.checkLogin(username, password)) {
+    if (PlayerDao.checkLogin(username, password).getValue() > 0) {
       return ControllerCode.SUCCESS;
     } else {
       return ControllerCode.LOGIN_FAILED;
