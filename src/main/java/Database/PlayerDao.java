@@ -20,7 +20,7 @@ public interface PlayerDao {
    * @param username Entities.Player entered username.
    * @param password Entities.Player entered password.
    * @param name Entities.Player entered display name
-   * @return message based on result.
+   * @return DaoCode based on result.
    */
   static DaoCode createPlayer(String username, String password, String name) {
     String hashedPassword = PasswordHasher.hashPassword(password);
@@ -44,7 +44,7 @@ public interface PlayerDao {
    * Checks the passed login credentials against the database.
    * @param username Entities.Player provided username.
    * @param password Entities.Player provided password.
-   * @return boolean result of whether the username and password combo were found.
+   * @return DaoCode result of whether the username and password combo were found.
    */
   static DaoCode checkLogin(String username, String password) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
@@ -90,7 +90,7 @@ public interface PlayerDao {
    * Update password in player table
    * @param username username of password to delete
    * @param password new password.
-   * @return Message
+   * @return DaoCode result
    */
   static DaoCode updatePassword(String username, String password) {
     String hashedPassword = PasswordHasher.hashPassword(password);
@@ -113,7 +113,7 @@ public interface PlayerDao {
    * Updates the character column based on username.
    * @param username active user username.
    * @param character chosen character index.
-   * @return boolean result.
+   * @return DaoCode result.
    */
   static DaoCode updateCharacter(String username, int character) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
@@ -134,7 +134,7 @@ public interface PlayerDao {
   /**
    * Delete user account from player table.
    * @param username username to search.
-   * @return boolean result of deletion.
+   * @return DaoCode result of deletion.
    */
   static DaoCode deleteAccount(String username) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
