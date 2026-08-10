@@ -3,6 +3,8 @@ package Controllers;
 import Database.BattleStats;
 import Database.BattleStatsDao;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 /**
@@ -81,18 +83,29 @@ public class BattleController {
     @FXML
     private void handleRunAway() {
 
-        BattleStats updatedStats = new BattleStats(
-                USER_ID,
-                currentStats.wins(),
-                currentStats.losses(),
-                currentStats.flees() + 1
-        );
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Run Away");
+        alert.setHeaderText("Would You Like to Surrender?");
+        alert.setContentText("Are you sure?");
 
-        if (BattleStatsDao.update(updatedStats)) {
-            currentStats = updatedStats;
-            updateLabels();
-        } else {
-            System.err.println("Could not update flee count.");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+
+
+            BattleStats updatedStats = new BattleStats(
+                    USER_ID,
+                    currentStats.wins(),
+                    currentStats.losses(),
+                    currentStats.flees() + 1
+            );
+
+            if (BattleStatsDao.update(updatedStats)) {
+                currentStats = updatedStats;
+                updateLabels();
+            } else {
+                System.err.println("Could not update flee count.");
+            }
         }
     }
 
