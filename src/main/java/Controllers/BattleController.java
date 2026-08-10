@@ -19,6 +19,7 @@ public class BattleController {
 
     private int playerHealth = 100;
     private int oppHealth = 100;
+    private int turnCount = 1;
 
     @FXML
     private Label winsLabel;
@@ -28,6 +29,9 @@ public class BattleController {
 
     @FXML
     private Label fleesLabel;
+
+    @FXML
+    private Label turnLabel;
 
     /**
      * Runs automatically when the battle scene opens.
@@ -43,6 +47,16 @@ public class BattleController {
         // Loads the player's stats.
         currentStats = BattleStatsDao.read(USER_ID).orElse(new BattleStats(USER_ID, 0, 0, 0));
         updateLabels();
+        turnLabel.setText("Turn " + turnCount);
+    }
+
+    /**
+     * Handles the fight sequence.
+     */
+    @FXML
+    private void handleFight() {
+        turnCount++;
+        turnLabel.setText("Turn " + turnCount);
     }
 
     /**
