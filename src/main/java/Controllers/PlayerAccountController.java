@@ -122,7 +122,10 @@ public class PlayerAccountController {
       if (code.getValue() > 0) {
         PopupMessage.successPopup("Character Update", code.getMessage());
       } else {
-        PopupMessage.errorPopup("Character Update Error", code.getMessage());
+        boolean choice = PopupMessage.confirmChoice(code.getMessage(), "Do you want to continue to battle?");
+        if (!choice) {
+          return;
+        }
       }
     }
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
@@ -140,7 +143,10 @@ public class PlayerAccountController {
       if (code.getValue() > 0) {
         PopupMessage.successPopup("Character Update", code.getMessage());
       } else {
-        PopupMessage.errorPopup("Character Update Error", code.getMessage());
+        boolean choice = PopupMessage.confirmChoice(code.getMessage(), "Do you still want to logout?");
+        if (!choice) {
+          return;
+        }
       }
     }
 
@@ -155,7 +161,7 @@ public class PlayerAccountController {
    */
   @FXML
   private void deleteAccount() {
-    boolean confirmDelete = PopupMessage.deleteAccount("Delete Account",
+    boolean confirmDelete = PopupMessage.confirmChoice("Delete Account",
         "Are you sure you want to delete your account?");
     if (confirmDelete) {
       DaoCode code = PlayerDao.deleteAccount(player.getUsername());
