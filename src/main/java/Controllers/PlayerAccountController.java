@@ -36,8 +36,8 @@ public class PlayerAccountController {
   // Is show password checkbox checked?
   private boolean passwordVisible = false;
 
-  // Character changed?
-  private boolean characterChanged = false;
+  // initial character number
+  private int initialCharacter;
 
   // Array of available Characters enums.
   private Characters[] characters;
@@ -117,7 +117,7 @@ public class PlayerAccountController {
    */
   @FXML
   private void goToBattleScene() {
-    if (characterChanged) {
+    if (characterChanged()) {
       // Update chosen character in DB before leaving scene.
       DaoCode code = PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
       if (code.getValue() > 0) {
@@ -139,7 +139,7 @@ public class PlayerAccountController {
    */
   @FXML
   private void logout() {
-    if (characterChanged) {
+    if (characterChanged()) {
       // Update chosen character in DB before leaving scene.
       DaoCode code = PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
       if (code.getValue() > 0) {
@@ -249,7 +249,17 @@ public class PlayerAccountController {
         new Rectangle2D(chosenCharacter.getStartX(), chosenCharacter.getStartY(),
             chosenCharacter.getSizeX(), chosenCharacter.getSizeY()));
     player.setCharacter(characterNum);
-    characterChanged = true;
+  }
+
+  /**
+   * Check if the character changed.
+   * @return boolean result of comparison with initial character.
+   */
+  private boolean characterChanged() {
+    if (player.getCharacter() != initialCharacter) {
+      return true;
+    }
+    else return false;
   }
 
   /**
@@ -371,6 +381,7 @@ public class PlayerAccountController {
     int level = Integer.parseInt(playerStats[3]);
     float health = Float.parseFloat(playerStats[4]);
     player = new Player(username, name, character, monstruos, level, health);
+    initialCharacter = player.getCharacter();
     updateDisplay();
   }
 
