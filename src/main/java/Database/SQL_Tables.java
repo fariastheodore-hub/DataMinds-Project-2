@@ -1,7 +1,7 @@
 package Database;
 
 /**
- * Enum for SQL Strings.
+ * Enum for SQL table creation strings.
  *
  * @author Theodore Farias
  * @version 0.1.0
@@ -16,21 +16,20 @@ public enum SQL_Tables {
           password    TEXT NOT NULL,
           name        TEXT NOT NULL,
           character   INTEGER NOT NULL DEFAULT 0,
-          monstruos   TEXT DEFAULT NULL,
+          monstruos   TEXT NOT NULL DEFAULT 0,
           level       INTEGER NOT NULL DEFAULT 0,
           health      REAL NOT NULL DEFAULT 100.0,
           created     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
-      """),
-  // Add next enum here
+      """), // Add next enum here
   BATTLE_STATS_TABLE("battle_stats", """
-      CREATE TABLE IF NOT EXISTS battle_stats (
-         user_id      INTEGER PRIMARY KEY,
-         wins       INTEGER NOT NULL DEFAULT 0,
-         losses       INTEGER NOT NULL DEFAULT 0,
-         flees       INTEGER NOT NULL DEFAULT 0
-       )
-        """);
+          CREATE TABLE IF NOT EXISTS battle_stats (
+             user_id      INTEGER PRIMARY KEY,
+             wins       INTEGER NOT NULL DEFAULT 0,
+             losses       INTEGER NOT NULL DEFAULT 0,
+             flees       INTEGER NOT NULL DEFAULT 0
+           )
+          """);
 
   // Title of sql table.
   private final String TITLE;
@@ -57,7 +56,6 @@ public enum SQL_Tables {
   public String getSql() {
     return SQL;
   }
-
 
 
   /**

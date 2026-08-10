@@ -1,5 +1,7 @@
 package SceneBuilding;
 
+import Controllers.LoginController;
+import Controllers.PlayerAccountController;
 import Database.DatabaseManager;
 import java.io.IOException;
 import java.net.URL;
@@ -31,9 +33,25 @@ public final class SceneFactory {
    */
   public static Scene create(SceneType sceneType) {
     return switch (sceneType) {
-      case LOGIN -> buildLogin();
+      case LOGIN -> buildLogin("");
       case CREATE_ACCOUNT -> buildCreateAccount();
-      case PLAYER_ACCOUNT -> buildPlayerAccount();
+      case PLAYER_ACCOUNT -> buildPlayerAccount(null);
+      case BATTLE -> buildBattle();
+    };
+  }
+
+
+  /**
+   * Overloaded create for providing username to Player_Account scene.
+   * @param sceneType scene type enum.
+   * @param username username provided by Login scene.
+   * @return Scene.
+   */
+  public static Scene create(SceneType sceneType, String username) {
+    return switch (sceneType) {
+      case LOGIN -> buildLogin(username);
+      case CREATE_ACCOUNT -> buildCreateAccount();
+      case PLAYER_ACCOUNT -> buildPlayerAccount(username);
       case BATTLE -> buildBattle();
     };
   }
@@ -43,12 +61,14 @@ public final class SceneFactory {
    *
    * @return Login scene
    */
-  private static Scene buildLogin() {
+  private static Scene buildLogin(String username) {
     try {
       DatabaseManager.getInstance();
       URL fxmlLocation = Main.class.getResource(SceneType.LOGIN.getFxml_url());
       FXMLLoader loader = new FXMLLoader(fxmlLocation);
       Parent root = loader.load();
+      LoginController controller = loader.getController();
+      controller.addUsername(username);
       Scene scene = new Scene(root);
       scene.getStylesheets().add(CSS_STYLE_SHEET);
       return scene;
@@ -79,15 +99,17 @@ public final class SceneFactory {
   }
 
   /**
-   * Builds Player Account scene
+   * Builds Entities.Player Account scene
    *
-   * @return Player Account scene
+   * @return Entities.Player Account scene
    */
-  private static Scene buildPlayerAccount() {
+  private static Scene buildPlayerAccount(String username) {
     try {
       URL fxmlLocation = Main.class.getResource(SceneType.PLAYER_ACCOUNT.getFxml_url());
       FXMLLoader loader = new FXMLLoader(fxmlLocation);
       Parent root = loader.load();
+      PlayerAccountController controller = loader.getController();
+      controller.loadPlayer(username);
       Scene scene = new Scene(root);
       scene.getStylesheets().add(CSS_STYLE_SHEET);
       return scene;
@@ -99,7 +121,7 @@ public final class SceneFactory {
 
 
   /*
-  * Builds the battle scene
+   * Builds the battle scene
    */
   private static Scene buildBattle() {
     try {

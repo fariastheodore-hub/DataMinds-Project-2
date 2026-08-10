@@ -14,7 +14,7 @@
       <padding>
         <Insets bottom="20" left="20" right="20" top="20"/>
       </padding>
-      <Label text="Login Username"/>
+      <Label text="Login Username: Can't contain spaces"/>
       <TextField fx:id="usernameField" maxWidth="300" promptText="Enter username"/>
       <Label text="Display Name"/>
       <TextField fx:id="nameField" layoutX="300.0" layoutY="167.0" maxWidth="300"
@@ -22,14 +22,19 @@
       <Label
         text="Password: Must be at least 8 characters long with at least one uppercase, one lowercase, one number and one special character (!@#$%^&amp;*)"/>
       <PasswordField fx:id="passwordField" maxWidth="300" promptText="Enter password"/>
+      <TextField fx:id="visiblePasswordField" managed="false" maxWidth="300"
+        promptText="Enter password" visible="false"/>
       <PasswordField fx:id="confirmPasswordField" layoutX="300.0" layoutY="190.0" maxWidth="300"
         promptText="Confirm password"/>
+      <TextField fx:id="visibleConfirmPasswordField" managed="false" maxWidth="300"
+        promptText="Confirm password" visible="false"/>
+      <CheckBox onAction="#togglePasswordField" text="Show password"/>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
         <opaqueInsets>
           <Insets/>
         </opaqueInsets>
         <Button onAction="#toLogin" text="Back to login"/>
-        <Button onAction="#createAccount" text="Create Account"/>
+        <Button onAction="#createAccount" text="Create account"/>
       </HBox>
 
     </VBox>

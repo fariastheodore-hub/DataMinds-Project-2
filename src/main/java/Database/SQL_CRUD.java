@@ -20,8 +20,27 @@ public enum SQL_CRUD {
       """),
 
   PASSWORD_CHANGE("Try to change password", """
-      """)
+      UPDATE player
+      SET password = ?
+      WHERE username = ?
+      """),
 
+  PLAYER_STATS("Gathers player stats for Entities.Player Account Scene", """
+      SELECT name, character, monstruos, level, health
+      FROM player
+      WHERE username = ?
+      """),
+
+  DELETE_ACCOUNT("Delete Account", """
+          DELETE FROM player
+          WHERE username = ?
+      """),
+
+  UPDATE_CHARACTER("Change character", """
+              UPDATE player
+              SET character = ?
+              WHERE username = ?
+      """)
   //Add more SQL enums here.
   ;
 
@@ -32,6 +51,7 @@ public enum SQL_CRUD {
     DESCRIPTION = description;
     SQL = sql;
   }
+
   /**
    * sql getter
    *

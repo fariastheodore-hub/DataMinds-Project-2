@@ -1,6 +1,6 @@
 .root {
   -fx-font-family: "segoe ui";
-  -fx-background-color: #00FF00;
+  -fx-background-color: turquoise;
 }
 
 .label {
@@ -15,5 +15,8 @@
   -fx-padding: 8 16 8 16;
 }
 .button:hover {
+  -fx-background-color: yellow;
+}
+.button:focused {
   -fx-background-color: yellow;
 }
