@@ -8,6 +8,7 @@ import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
+import SceneBuilding.SoundManager;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -128,6 +129,7 @@ public class PlayerAccountController {
         }
       }
     }
+    SoundManager.getInstance().stopAccountMusic();
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.BATTLE));
   }
