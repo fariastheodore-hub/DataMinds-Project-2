@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BattleController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BattleController">
    <children>
       <Button fx:id="runAway" layoutX="250.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleRunAway" prefHeight="30.0" prefWidth="92.0" text="Run Away" />
       <Button fx:id="battle" layoutX="48.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleFight" prefHeight="30.0" prefWidth="71.0" text="Fight!" />
