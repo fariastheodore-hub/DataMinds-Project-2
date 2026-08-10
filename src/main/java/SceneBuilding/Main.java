@@ -21,6 +21,7 @@ public class Main extends Application {
     primaryStage.setTitle("Monstruos");
     primaryStage.setScene(SceneFactory.create(SceneType.LOGIN));
     primaryStage.show();
+    SoundManager.getInstance().playAccountMusic();
   }
 
   @Override
