@@ -15,6 +15,11 @@ public class BattleController {
 
     private BattleStats currentStats;
 
+
+
+    private int playerHealth = 100;
+    private int oppHealth = 100;
+
     @FXML
     private Label winsLabel;
 
