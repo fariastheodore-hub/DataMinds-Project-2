@@ -14,7 +14,9 @@
                   <Label fx:id="winsLabel" prefHeight="30.0" prefWidth="92.0" text="W: 0" />
                   <Label fx:id="lossesLabel" prefHeight="27.0" prefWidth="103.0" text="L: 0" />
                   <Label fx:id="fleesLabel" prefHeight="30.0" prefWidth="99.0" text="Fled: 0" />
-                  <Label fx:id="turnLabel" layoutX="450" layoutY="30" text="turn: 1" />
+                  <Label fx:id="turnLabel" layoutX="500.0" layoutY="20.0" text="turn: 1" />
+                  <Label fx:id="playerHealthLabel" layoutX="40.0" layoutY="230.0" text="Player HP: 100" />
+                  <Label fx:id="oppHealthLabel" layoutX="430.0" layoutY="230.0" text="Opponent HP: 100" />
                </children>
             </VBox>
          </children>
