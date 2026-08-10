@@ -1,5 +1,6 @@
 package Controllers;
 
+import Database.DaoCode;
 import Database.PlayerDao;
 import Entities.Characters;
 import Entities.Monstruos;
@@ -7,7 +8,6 @@ import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
-import java.io.File;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
@@ -34,6 +34,9 @@ public class PlayerAccountController {
 
   // Is show password checkbox checked?
   private boolean passwordVisible = false;
+
+  // Character changed?
+  private boolean characterChanged = false;
 
   // Array of available Characters enums.
   private Characters[] characters;
@@ -113,9 +116,15 @@ public class PlayerAccountController {
    */
   @FXML
   private void goToBattleScene() {
-    // Save chosen character in DB before leaving scene.
-    PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
-
+    if (characterChanged) {
+      // Update chosen character in DB before leaving scene.
+      DaoCode code = PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
+      if (code.getValue() > 0) {
+        PopupMessage.successPopup("Character Update", code.getMessage());
+      } else {
+        PopupMessage.errorPopup("Character Update Error", code.getMessage());
+      }
+    }
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.BATTLE));
   }
@@ -125,11 +134,18 @@ public class PlayerAccountController {
    */
   @FXML
   private void logout() {
+    if (characterChanged) {
+      // Update chosen character in DB before leaving scene.
+      DaoCode code = PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
+      if (code.getValue() > 0) {
+        PopupMessage.successPopup("Character Update", code.getMessage());
+      } else {
+        PopupMessage.errorPopup("Character Update Error", code.getMessage());
+      }
+    }
+
     Stage stage = (Stage) playerGreeting.getScene().getWindow();
     PopupMessage.successPopup("Logout", "Logging out, goodbye " + player.getName() + "!");
-
-    // Update chosen character in DB before leaving scene.
-    PlayerDao.updateCharacter(player.getUsername(), player.getCharacter());
     player = null;
     stage.setScene(SceneFactory.create(SceneType.LOGIN));
   }
@@ -139,17 +155,17 @@ public class PlayerAccountController {
    */
   @FXML
   private void deleteAccount() {
-    boolean result = PopupMessage.deleteAccount("Delete Account",
+    boolean confirmDelete = PopupMessage.deleteAccount("Delete Account",
         "Are you sure you want to delete your account?");
-    if (result) {
-      if (PlayerDao.deleteAccount(player.getUsername())) {
-        PopupMessage.successPopup("Account Deletion",
-            "Account has been successfully deleted, goodbye!");
+    if (confirmDelete) {
+      DaoCode code = PlayerDao.deleteAccount(player.getUsername());
+      if (code.getValue() > 0) {
+        PopupMessage.successPopup("Account Deletion", code.getMessage());
         Stage stage = (Stage) playerGreeting.getScene().getWindow();
         player = null;
         stage.setScene(SceneFactory.create(SceneType.LOGIN));
       } else {
-        PopupMessage.errorPopup("Account Deletion", "Account was not deleted");
+        PopupMessage.errorPopup("Account Deletion", code.getMessage());
       }
     }
   }
@@ -225,6 +241,7 @@ public class PlayerAccountController {
         new Rectangle2D(chosenCharacter.getStartX(), chosenCharacter.getStartY(),
             chosenCharacter.getSizeX(), chosenCharacter.getSizeY()));
     player.setCharacter(characterNum);
+    characterChanged = true;
   }
 
   /**
@@ -302,11 +319,15 @@ public class PlayerAccountController {
 
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Password Change", code.getMessage());
-    } else if (PlayerDao.checkLogin(player.getUsername(), password)) {
+    } else if (PlayerDao.checkLogin(player.getUsername(), password).getValue() > 0) {
       PopupMessage.errorPopup("Password Change", "Entered password matches current password");
     } else {
-      PopupMessage.successPopup("Password Change",
-          PlayerDao.updatePassword(player.getUsername(), password));
+      DaoCode daoCode = PlayerDao.updatePassword(player.getUsername(), password);
+      if (daoCode.getValue() > 0) {
+        PopupMessage.successPopup("Password Change", daoCode.getMessage());
+      } else {
+        PopupMessage.errorPopup("Password Change", daoCode.getMessage());
+      }
       toggleChangePassword();
     }
   }

@@ -1,5 +1,6 @@
 package Controllers;
 
+import Database.DaoCode;
 import Database.PlayerDao;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneType;
@@ -86,12 +87,15 @@ public class CreateAccountController {
     if (code.getValue() < 0) {
       PopupMessage.errorPopup("Account Creation", code.getMessage());
     } else {
-      PopupMessage.successPopup("Account Creation",
-          PlayerDao.createPlayer(username, password, name));
-      Stage stage = (Stage) titleLabel.getScene().getWindow();
-      stage.setScene(SceneFactory.create(SceneType.LOGIN, username));
+      DaoCode daoCode = PlayerDao.createPlayer(username, password, name);
+      if (daoCode.getValue() > 0) {
+        PopupMessage.successPopup("Account Creation", daoCode.getMessage());
+        Stage stage = (Stage) titleLabel.getScene().getWindow();
+        stage.setScene(SceneFactory.create(SceneType.LOGIN, username));
+      } else {
+        PopupMessage.errorPopup("Account Creation", daoCode.getMessage());
+      }
     }
-
   }
 
   /**

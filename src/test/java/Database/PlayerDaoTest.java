@@ -28,7 +28,7 @@ class PlayerDaoTest {
     String name = "TESTER";
 
     // Running PlayerDao.createPlayer
-    String result = PlayerDao.createPlayer(
+    DaoCode code = PlayerDao.createPlayer(
         username,
         password,
         name
@@ -36,8 +36,8 @@ class PlayerDaoTest {
 
     // Should provide success message provided from PlayerDao.createPlayer
     assertEquals(
-        "Account successfully created",
-        result);
+        DaoCode.CREATION_SUCCESS,
+        code);
 
   }
 
