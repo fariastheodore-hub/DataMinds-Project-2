@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class DatabaseManager {
 
   //database URL to connect to app.db SQLite database
-  private static final String DB_URL = "jdbc:sqlite:app.db";
+  private static final String DB_URL = System.getProperty("app.db.url","jdbc:sqlite:app.db");
   //Holds reference of instance of Database.DatabaseManager
   private static DatabaseManager instance;
   //Connection to SQLite database - Package private
@@ -31,20 +31,6 @@ public class DatabaseManager {
   private DatabaseManager() {
     try {
       connection = DriverManager.getConnection(DB_URL);
-      System.out.println("Database connected.");
-      createTables();
-    } catch (SQLException e) {
-      System.err.println("Connection failed: " + e.getMessage());
-    }
-  }
-
-  /**
-   * Overloaded contructor for testing with separate DB.
-   * @param dbUrl url of test database.
-   */
-  private DatabaseManager(String dbUrl) {
-    try {
-      connection = DriverManager.getConnection(dbUrl);
       System.out.println("Database connected.");
       createTables();
     } catch (SQLException e) {
@@ -82,18 +68,6 @@ public class DatabaseManager {
   }
 
   /**
-   * Overloaded instance return for testing using separate test url for DB.
-   * @param dbUrl Database url for testing
-   * @return instance of databaseManager
-   */
-  public static DatabaseManager getInstance(String dbUrl) {
-    if (instance == null) {
-      instance = new DatabaseManager(dbUrl);
-    }
-    return instance;
-  }
-
-  /**
    * Attempts to close the connection to the database. Called by SceneBuilding.Main.Java's stop() method.
    */
   public void close() {
@@ -107,4 +81,13 @@ public class DatabaseManager {
     instance = null;
   }
 
+  /**
+   * Test-only: drop the cached instance so the next getInstance() rebuilds.
+   */
+  static void resetForTesting() {
+    if (instance != null)  {
+      instance.close();
+      instance = null;
+    }
+  }
 }

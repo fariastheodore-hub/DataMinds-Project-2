@@ -2,9 +2,7 @@ package Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Connection;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,21 +15,17 @@ import org.junit.jupiter.api.Test;
  */
 class PlayerDaoTest {
 
-  private static final String DB_URL = "jdbc:sqlite:test.db";
-  private static Connection connection;
-
-  @BeforeAll
-  static void setUpDatabase() {
-      DatabaseManager.getInstance(DB_URL);
-  }
-
   @BeforeEach
   void setUp() {
+    System.setProperty("app.db.url", "jdbc:sqlite::memory:");
+    DatabaseManager.resetForTesting();
+    DatabaseManager.getInstance();
     PlayerDao.createPlayer("TheNewPlayer", "Password123!", "TESTER");
   }
 
   @AfterEach
   void tearDown() {
+    DatabaseManager.resetForTesting();
   }
 
   @Test
