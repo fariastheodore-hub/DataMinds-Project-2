@@ -2,18 +2,29 @@ package Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PlayerDaoTest {
 
-  private DatabaseManager databaseManager;
+  private static final String DB_URL = "jdbc:sqlite:test.db";
+  private static Connection connection;
+
+  @BeforeAll
+  static void setUpDatabase() {
+      DatabaseManager.getInstance(DB_URL);
+      PlayerDao.deleteAccount("TheNewPlayer");
+  }
 
   @BeforeEach
   void setUp() {
-    databaseManager = DatabaseManager.getInstance();
-    PlayerDao.deleteAccount("TheNewPlayer");
+    // Make sure "TheNewPLayer" is deleted prior to testing.
   }
 
   @AfterEach
@@ -28,16 +39,10 @@ class PlayerDaoTest {
     String name = "TESTER";
 
     // Running PlayerDao.createPlayer
-    DaoCode code = PlayerDao.createPlayer(
-        username,
-        password,
-        name
-    );
+    DaoCode code = PlayerDao.createPlayer(username, password, name);
 
     // Should provide success message provided from PlayerDao.createPlayer
-    assertEquals(
-        DaoCode.CREATION_SUCCESS,
-        code);
+    assertEquals(DaoCode.CREATION_SUCCESS, code);
 
   }
 

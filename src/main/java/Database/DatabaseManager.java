@@ -39,6 +39,20 @@ public class DatabaseManager {
   }
 
   /**
+   * Overloaded contructor for testing with separate DB.
+   * @param dbUrl url of test database.
+   */
+  private DatabaseManager(String dbUrl) {
+    try {
+      connection = DriverManager.getConnection(dbUrl);
+      System.out.println("Database connected.");
+      createTables();
+    } catch (SQLException e) {
+      System.err.println("Connection failed: " + e.getMessage());
+    }
+  }
+
+  /**
    * Creates the database tables based on the sql entered in the Database.SQL_Tables.
    */
   private void createTables() {
@@ -63,6 +77,18 @@ public class DatabaseManager {
   public static DatabaseManager getInstance() {
     if (instance == null) {
       instance = new DatabaseManager();
+    }
+    return instance;
+  }
+
+  /**
+   * Overloaded instance return for testing using separate test url for DB.
+   * @param dbUrl Database url for testing
+   * @return instance of databaseManager
+   */
+  public static DatabaseManager getInstance(String dbUrl) {
+    if (instance == null) {
+      instance = new DatabaseManager(dbUrl);
     }
     return instance;
   }
