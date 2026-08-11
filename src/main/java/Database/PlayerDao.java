@@ -55,6 +55,7 @@ public interface PlayerDao {
       if (result == null) {
         return DaoCode.LOGIN_FAILURE;
       }
+      // If there is something in the password field, use PasswordHasher to verify it.
       if (PasswordHasher.verifyPassword(password, result)) {
         return DaoCode.LOGIN_SUCCESS;
       }
@@ -97,7 +98,7 @@ public interface PlayerDao {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.PASSWORD_CHANGE.getSql())) {
       pstmt.setString(1, hashedPassword);
-      pstmt.setString(2, username);
+      pstmt.setString(2, username.toLowerCase());
       int rowsUpdated = pstmt.executeUpdate();
       if (rowsUpdated > 0) {
         return DaoCode.PASSWORD_UPDATE_SUCCESS;
