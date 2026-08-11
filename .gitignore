@@ -230,8 +230,5 @@ gradle-app.setting
 app.db
 app.db-shm
 app.db-wal
-test.db
-test.db-shm
-test.db-wal
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,windows,macos,gradle,java
