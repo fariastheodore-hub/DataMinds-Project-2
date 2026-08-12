@@ -15,6 +15,10 @@ import org.junit.jupiter.api.Test;
  */
 class PlayerDaoTest {
 
+  /**
+   * Setup in-memory database before each test.
+   * Create our "TheNewPlayer" player before each test.
+   */
   @BeforeEach
   void setUp() {
     System.setProperty("app.db.url", "jdbc:sqlite::memory:");
@@ -23,11 +27,17 @@ class PlayerDaoTest {
     PlayerDao.createPlayer("TheNewPlayer", "Password123!", "TESTER");
   }
 
+  /**
+   * Close the connection and nullify the in-memory database after each test.
+   */
   @AfterEach
   void tearDown() {
     DatabaseManager.resetForTesting();
   }
 
+  /**
+   * Test creating a player returns the proper DaoCode.
+   */
   @Test
   void createPlayer() {
     // Ensure TheNewPlayer account is not there.
@@ -51,6 +61,9 @@ class PlayerDaoTest {
 
   }
 
+  /**
+   * Test checking login with valid Username and Password returns appropriate DaoCode.
+   */
   @Test
   void checkLogin() {
     //New player info created in createPlayer test
@@ -64,6 +77,9 @@ class PlayerDaoTest {
     assertEquals(DaoCode.LOGIN_SUCCESS, code);
   }
 
+  /**
+   * Test that the proper player stats are returned in a String array.
+   */
   @Test
   void getPlayerStats() {
     String username = "TheNewPlayer";
@@ -85,6 +101,9 @@ class PlayerDaoTest {
     assertEquals("100.0", stats[4]);
   }
 
+  /**
+   * Test that passwords are properly updating.
+   */
   @Test
   void updatePassword() {
     // Same username as before.
@@ -105,6 +124,9 @@ class PlayerDaoTest {
     assertEquals(DaoCode.LOGIN_SUCCESS, code3);
   }
 
+  /**
+   * Test that accounts are actually getting deleted and returning the appropriate DaoCode.
+   */
   @Test
   void deleteAccount() {
     // Same username

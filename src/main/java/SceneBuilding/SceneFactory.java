@@ -35,7 +35,7 @@ public final class SceneFactory {
     return switch (sceneType) {
       case LOGIN -> buildLogin("");
       case CREATE_ACCOUNT -> buildCreateAccount();
-      case PLAYER_ACCOUNT -> buildPlayerAccount(null);
+      case PLAYER_ACCOUNT -> buildPlayerAccount("");
       case BATTLE -> buildBattle();
     };
   }

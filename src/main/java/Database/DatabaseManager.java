@@ -84,7 +84,7 @@ public class DatabaseManager {
   /**
    * Test-only: drop the cached instance so the next getInstance() rebuilds.
    */
-  static void resetForTesting() {
+  public static void resetForTesting() {
     if (instance != null)  {
       instance.close();
       instance = null;
