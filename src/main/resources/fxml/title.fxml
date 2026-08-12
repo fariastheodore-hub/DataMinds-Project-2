@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="BOTTOM_CENTER" prefHeight="200" prefWidth="660" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TitleController">
+  <ImageView fx:id="titleImage" fitHeight="189" fitWidth="630" onMouseClicked="#changeTitle" pickOnBounds="true" preserveRatio="true">
+    <viewport>
+      <Rectangle2D height="160" minX="635" minY="185" width="630" />
+    </viewport>
+    <Image preserveRatio="true" url="@../images/MonstruosTitle.png">
+    </Image>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+  </ImageView>
+</HBox>
