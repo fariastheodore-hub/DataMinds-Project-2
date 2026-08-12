@@ -10,7 +10,7 @@ package Entities;
 public enum Monstruos {
   FIRST(0.0, 0.0, "Yellow Fellow", "Static"), SECOND(375.0, 0.0, "Purple Pal", "Slimy"), THIRD(
       750.0, 0.0, "Green Guy", "Sticky"), FOURTH(0.0, 430.0, "Boo Berry", "Scary"), FIFTH(375.0,
-      430.0, "Diablito", "Spicy"), SIXTH(750.0, 430.0, "Java Lava", "Smoldering");
+      430.0, "Diablito", "Spicy"), SIXTH(755.0, 430.0, "Java Lava", "Smoldering");
 
   private final double START_X;
   private final double START_Y;
@@ -33,7 +33,7 @@ public enum Monstruos {
   }
 
   public double getSizeX() {
-    return 375.0;
+    return 369.0;
   }
 
   public double getSizeY() {

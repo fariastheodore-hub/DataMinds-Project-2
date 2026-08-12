@@ -9,8 +9,8 @@ package SceneBuilding;
  */
 public enum SceneType {
   // Place commas between enums and semicolon after last.
-  LOGIN("/login-screen.fxml"), CREATE_ACCOUNT("/create-account-screen.fxml"), PLAYER_ACCOUNT(
-      "/player-account-screen.fxml"), BATTLE("/Battle_Scene.fxml"),
+  LOGIN("/fxml/login-screen.fxml"), CREATE_ACCOUNT("/fxml/create-account-screen.fxml"), PLAYER_ACCOUNT(
+      "/fxml/player-account-screen.fxml"), BATTLE("/fxml/Battle_Scene.fxml"),
   ;
 
   private final String fxml_url;

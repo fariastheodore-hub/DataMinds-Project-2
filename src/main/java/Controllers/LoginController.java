@@ -1,17 +1,12 @@
 package Controllers;
 
-import Database.PlayerDao;
-import Entities.Player;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneFactory;
 import SceneBuilding.SceneType;
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 /**
  * Controller for Login scene
@@ -24,10 +19,6 @@ public class LoginController {
 
   // Is show password checkbox checked?
   private boolean passwordVisible = false;
-
-  // Monstruos label
-  @FXML
-  private Label titleLabel;
 
   // Username field
   @FXML
@@ -62,7 +53,7 @@ public class LoginController {
       PopupMessage.errorPopup("Login Error", code.getMessage());
     } else {
       PopupMessage.successPopup("Login Success", "Login Successful");
-      Stage stage = (Stage) titleLabel.getScene().getWindow();
+      Stage stage = (Stage) usernameField.getScene().getWindow();
       stage.setScene(SceneFactory.create(SceneType.PLAYER_ACCOUNT, username));
     }
   }
@@ -72,7 +63,7 @@ public class LoginController {
    */
   @FXML
   private void createAccount() {
-    Stage stage = (Stage) titleLabel.getScene().getWindow();
+    Stage stage = (Stage) usernameField.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.CREATE_ACCOUNT));
   }
 

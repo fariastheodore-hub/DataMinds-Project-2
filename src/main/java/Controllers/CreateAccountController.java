@@ -5,7 +5,6 @@ import Database.PlayerDao;
 import SceneBuilding.PopupMessage;
 import SceneBuilding.SceneType;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -22,10 +21,6 @@ public class CreateAccountController {
 
   // Is show password checkbox checked?
   private boolean passwordVisible = false;
-
-  // Monstruos label
-  @FXML
-  private Label titleLabel;
 
   // Login username field
   @FXML
@@ -57,7 +52,7 @@ public class CreateAccountController {
    */
   @FXML
   private void toLogin() {
-    Stage stage = (Stage) titleLabel.getScene().getWindow();
+    Stage stage = (Stage) usernameField.getScene().getWindow();
     stage.setScene(SceneFactory.create(SceneType.LOGIN));
   }
 
@@ -90,7 +85,7 @@ public class CreateAccountController {
       DaoCode daoCode = PlayerDao.createPlayer(username, password, name);
       if (daoCode.getValue() > 0) {
         PopupMessage.successPopup("Account Creation", daoCode.getMessage());
-        Stage stage = (Stage) titleLabel.getScene().getWindow();
+        Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setScene(SceneFactory.create(SceneType.LOGIN, username));
       } else {
         PopupMessage.errorPopup("Account Creation", daoCode.getMessage());

@@ -44,8 +44,7 @@
 
   </center>
   <top>
-    <Label fx:id="titleLabel" alignment="CENTER" prefHeight="155.0" prefWidth="197.0"
-      style="-fx-font-size: 25;" text="MONSTRUOS" BorderPane.alignment="CENTER"/>
+    <fx:include source="title.fxml"/>
   </top>
 
 </BorderPane>
