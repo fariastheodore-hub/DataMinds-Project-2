@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class DatabaseManager {
 
   //database URL to connect to app.db SQLite database
-  private static final String DB_URL = "jdbc:sqlite:app.db";
+  private static final String DB_URL = System.getProperty("app.db.url","jdbc:sqlite:app.db");
   //Holds reference of instance of Database.DatabaseManager
   private static DatabaseManager instance;
   //Connection to SQLite database - Package private
@@ -81,4 +81,13 @@ public class DatabaseManager {
     instance = null;
   }
 
+  /**
+   * Test-only: drop the cached instance so the next getInstance() rebuilds.
+   */
+  public static void resetForTesting() {
+    if (instance != null)  {
+      instance.close();
+      instance = null;
+    }
+  }
 }

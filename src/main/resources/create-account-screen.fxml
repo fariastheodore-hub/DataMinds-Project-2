@@ -34,7 +34,7 @@
           <Insets/>
         </opaqueInsets>
         <Button onAction="#toLogin" text="Back to login"/>
-        <Button onAction="#createAccount" text="Create account"/>
+        <Button fx:id="createAccountButton" onAction="#createAccount" text="Create account"/>
       </HBox>
 
     </VBox>

@@ -48,7 +48,7 @@ public class SoundManager {
    */
   public void playAccountMusic() {
     accountMusicPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-    accountMusicPlayer.setVolume(0.05);
+    accountMusicPlayer.setVolume(0.10);
     accountMusicPlayer.play();
   }
 

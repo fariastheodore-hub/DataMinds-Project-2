@@ -22,7 +22,7 @@
               <Font size="14.0"/>
             </font>
           </Label>
-          <Button onAction="#createAccount" text="Create account">
+          <Button fx:id="createAccountButton" onAction="#createAccount" text="Create account">
             <font>
               <Font size="14.0"/>
             </font>
@@ -34,7 +34,7 @@
       <TextField fx:id="visiblePasswordField" managed="false" maxWidth="300"
         promptText="Enter password" visible="false"/>
       <CheckBox onAction="#togglePasswordField" text="Show password"/>
-      <Button onAction="#checkLogin" text="Login">
+      <Button fx:id="loginButton" onAction="#checkLogin" text="Login">
         <font>
           <Font size="14.0"/>
         </font>
