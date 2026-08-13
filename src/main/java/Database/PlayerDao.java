@@ -119,8 +119,8 @@ public interface PlayerDao {
   static DaoCode updateCharacter(String username, int character) {
     try (PreparedStatement pstmt = DatabaseManager.connection.prepareStatement(
         SQL_CRUD.UPDATE_CHARACTER.getSql())) {
-      pstmt.setString(1, Integer.toString(character));
-      pstmt.setString(2, username);
+      pstmt.setInt(1, character);
+      pstmt.setString(2, username.toLowerCase());
       int rowsUpdated = pstmt.executeUpdate();
       if (rowsUpdated > 0) {
         return DaoCode.CHARACTER_UPDATE_SUCCESS;
