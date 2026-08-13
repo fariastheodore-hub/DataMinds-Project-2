@@ -7,7 +7,7 @@ Monstruos - Monster Battle CST 338 Project 2 — Team **Data Minds**.
 |-------|-------|-----------------|--------|------------|-------|--------------------|--------|
 | 1 — Accounts | Theodore Farias | fariastheodore-hub | #1, #4, #5, #6, #7, #8, #15, #16, #18, #23, #34, #35, #36, #37, #40, #42, #43, #44 | theodore/JavaFX-setup, theodore/sceneType, theodore/SQLite-setup, theodore/SceneFactory, theodore/gitignore-update, theodore/ai-review-fixes, theodore/FXML-setup, theodore/DAO_CRUD, theodore/first-tests, theodore/fxml-controller-cleanup, theodore/password-security, theodore/fxml-refining, theodore/playerdao-cleanup, theodore/music, theodore/character-change-fix, theodore/tests, theodore/extra-credit, theodore/last-fix-I-promise | #2, #13, #14, #19, #20, #21, #22, #25, #27, #32, #33, #38, #39, #41, #45, #48, #51, #52, #53, #54 | Notifications / alerts (Custom popups based on login, create account, change password, delete account | complete |
 | 2 — Creature Roster | | | | | | | |
-| 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | #9, #10, #11, #26, #50| ameen/battle-scene, ameen/combatLogic, ameen/fightLogic, ameen/surrenderLogic | #29, #31, #46, #47, #49 | Notifications / alerts | in-progress |
+| 3 — Battle Engine | Ameen Hamdalla | Ameen-05 | #9, #10, #11, #26, #50| ameen/battle-scene, ameen/combatLogic, ameen/fightLogic, ameen/surrenderLogic, ameen/AI-review-changes | #29, #31, #46, #47, #49, #55 | Notifications / alerts | in-progress |
 | 4 — Admin & Arenas | | | | | | | |
 | 5 — Marketplace & Trading | | | | | | | |
 _Status values: planned · in-progress · complete_
@@ -46,10 +46,12 @@ Issue if the team later decides to attempt it for extra credit._
 | #52 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 | #53 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 | #54 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
+| #55 | Ameen Hamdalla | Theodore Faris | https://chatgpt.com | Approved/Merged|
 
 ## AI Usage Log
 ### **AI-drafted tests:**
 - Theodore Farias  [link to TESTING.md](https://github.com/fariastheodore-hub/DataMinds-Project-2/blob/main/src/test/TESTING.md) Used ChatGPT to generate tests for ControllerOps class. Reviewed and refined tests.
+- Ameen Hamdalla used ChatGPT to generate test for the BattleStatsDaoTest.java. Reviewd and ran successfully. 
 ### **AI code reviews:**
 - Theodore Farias [PR link](https://github.com/fariastheodore-hub/DataMinds-Project-2/pull/45) Agree with ChatGPT that user should have a choice to not go to battle scene if character update fails to write to the DB. Added commit to include choice popup. Agreed that javadoc comments needed to be updated based on new DaoCode return values in PlayerDao. Added commit to fix javadoc comments.
 
