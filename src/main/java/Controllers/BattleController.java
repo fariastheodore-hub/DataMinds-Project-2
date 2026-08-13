@@ -102,7 +102,7 @@ public class BattleController {
      *  Handles the damage calculations for the player attacking opponent
      */
     private void attackOpponent() {
-        oppHealth = Math.max(0, oppHealth - DAMAGE);
+        oppHealth = BattleLogic.applyDamage(oppHealth, DAMAGE);
         oppHealthLabel.setText("Opponent HP: " + oppHealth);
     }
 
@@ -110,7 +110,7 @@ public class BattleController {
      *  Handles the damage calculations for opponent attacking the player
      */
     private void attackPlayer() {
-        playerHealth = Math.max(0, playerHealth - DAMAGE);
+        playerHealth = BattleLogic.applyDamage(playerHealth, DAMAGE);
         playerHealthLabel.setText("Player HP: " + playerHealth);
     }
 
