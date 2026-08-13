@@ -14,8 +14,11 @@
     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
       <Label fx:id="playerGreeting">
         <font>
-          <Font size="32.0" />
+          <Font size="36.0" />
         </font>
+            <HBox.margin>
+               <Insets left="100.0" right="20.0" />
+            </HBox.margin>
       </Label>
       <Region HBox.hgrow="ALWAYS" />
       <Button onAction="#changeCharacter" text="Change Character" />

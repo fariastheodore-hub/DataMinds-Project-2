@@ -1,5 +1,6 @@
 package Controllers;
 
+import SceneBuilding.SoundManager;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -13,6 +14,9 @@ import javafx.scene.image.ImageView;
  * @since 8/12/2026
  */
 public class TitleController {
+
+  // Is music playing?
+  private boolean musicPlaying = true;
 
   private int titleNum;
 
@@ -50,6 +54,20 @@ public class TitleController {
     titleImage.setViewport(
         new Rectangle2D(chosenTitle.getMinX(), chosenTitle.getMinY(), chosenTitle.getWidth(),
             chosenTitle.getHeight()));
+  }
+
+  /**
+   * Toggles the music off and on.
+   */
+  @FXML
+  private void toggleMusic() {
+    if (musicPlaying) {
+      SoundManager.getInstance().stopAccountMusic();
+      musicPlaying = false;
+    } else {
+      SoundManager.getInstance().playAccountMusic();
+      musicPlaying = true;
+    }
   }
 
 }
