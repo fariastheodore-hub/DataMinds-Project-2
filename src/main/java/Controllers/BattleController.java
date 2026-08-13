@@ -151,6 +151,10 @@ public class BattleController {
     @FXML
     private void handleRunAway() {
 
+        if (battleOver){
+            return;
+        }
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Run Away");
         alert.setHeaderText("Would You Like to Surrender?");
@@ -164,13 +168,17 @@ public class BattleController {
             BattleStats updatedStats = new BattleStats(
                     USER_ID,
                     currentStats.wins(),
-                    currentStats.losses(),
+                    currentStats.losses() + 1,
                     currentStats.flees() + 1
             );
 
             if (BattleStatsDao.update(updatedStats)) {
                 currentStats = updatedStats;
                 updateLabels();
+
+                battleOver = true;
+                turnLabel.setText("You Surrendered.");
+
             } else {
                 System.err.println("Could not update flee count.");
             }
