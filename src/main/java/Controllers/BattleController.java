@@ -23,6 +23,10 @@ public class BattleController {
     private int oppHealth = 100;
     private int turnCount = 1;
 
+    private static final int DAMAGE = 10;
+    private boolean battleOver = false;
+    private boolean playerStarts = Math.random() < 0.5;
+
     @FXML
     private Label winsLabel;
 
@@ -64,21 +68,81 @@ public class BattleController {
      */
     @FXML
     private void handleFight() {
-        if (oppHealth < 0){
+        if (battleOver){
             return;
         }
 
-        attackOpponent();
+        if (playerStarts){
+            attackOpponent();
+
+            if (oppHealth > 0){
+                attackPlayer();
+            }
+        } else {
+            attackPlayer();
+
+            if (playerHealth > 0){
+                attackOpponent();
+            }
+        }
+
+        playerStarts = !playerStarts;
+
+        checkBattleOver();
+
+        if(battleOver){
+            return;
+        }
+
         turnCount++;
         turnLabel.setText("Turn " + turnCount);
     }
 
     /**
-     *  Handles the damage calculations
+     *  Handles the damage calculations for the player attacking opponent
      */
     private void attackOpponent() {
-        oppHealth = Math.max(0, oppHealth - 10);
+        oppHealth = Math.max(0, oppHealth - DAMAGE);
         oppHealthLabel.setText("Opponent HP: " + oppHealth);
+    }
+
+    /**
+     *  Handles the damage calculations for opponent attacking the player
+     */
+    private void attackPlayer() {
+        playerHealth = Math.max(0, playerHealth - DAMAGE);
+        playerHealthLabel.setText("Player HP: " + playerHealth);
+    }
+
+    /**
+     *  Checks to see if the battle is over
+     */
+    private void checkBattleOver() {
+        if (oppHealth == 0) {
+            battleOver = true;
+            turnLabel.setText("You Win!!");
+
+            BattleStats updatedStats = new BattleStats(USER_ID, currentStats.wins() + 1, currentStats.losses(), currentStats.flees());
+
+            if (BattleStatsDao.update(updatedStats)) {
+                currentStats = updatedStats;
+                updateLabels();
+            }
+        }
+
+        if (playerHealth == 0) {
+            battleOver = true;
+            turnLabel.setText("You Lose!!");
+
+            BattleStats updatedStats = new BattleStats(USER_ID, currentStats.wins(), currentStats.losses() + 1, currentStats.flees());
+
+            if (BattleStatsDao.update(updatedStats)) {
+                currentStats = updatedStats;
+                updateLabels();
+            }
+        }
+
+
     }
 
     /**
