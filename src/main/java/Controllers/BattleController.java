@@ -64,6 +64,10 @@ public class BattleController {
      */
     @FXML
     private void handleFight() {
+        if (oppHealth < 0){
+            return;
+        }
+
         attackOpponent();
         turnCount++;
         turnLabel.setText("Turn " + turnCount);
