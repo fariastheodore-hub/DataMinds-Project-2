@@ -186,6 +186,18 @@ public class BattleController {
     }
 
     /**
+     *  Handles resetting the player's stats
+     */
+    @FXML
+    private void handleResetStats(){
+        BattleStatsDao.delete(USER_ID);
+        BattleStatsDao.create(USER_ID);
+
+        currentStats = BattleStatsDao.read(USER_ID).orElse(new BattleStats(USER_ID, 0, 0, 0));
+        updateLabels();
+    }
+
+    /**
      * Displays the current statistics in the scene.
      */
     private void updateLabels() {
