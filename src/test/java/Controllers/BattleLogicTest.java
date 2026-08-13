@@ -11,7 +11,8 @@ public class BattleLogicTest {
     }
 
     @Test
-    void damageDoesNotGoBelowZero() {
-        assertEquals(0, BattleLogic.applyDamage(5, 10));
+    void damageStopsAtZero() {
+        int result =  BattleLogic.applyDamage(5, 10);
+        assertEquals(0, result);
     }
 }
