@@ -73,5 +73,5 @@ Issue if the team later decides to attempt it for extra credit._
 ```
 Requirements: JDK 25, JavaFX 25.
 - Clone the repository to your machine.
-- type ./gradlew run to launch the app and test it as you please.
-- type ./gradlew test to run the test suite.
+- type "./gradlew run" in the command terminal to launch the app and test it as you please.
+- type "./gradlew test" in the command terminal to run the test suite.
