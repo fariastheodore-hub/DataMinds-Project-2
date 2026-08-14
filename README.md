@@ -37,7 +37,7 @@ Issue if the team later decides to attempt it for extra credit._
 | #38 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 | #39 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
 | #41 | Theodore Farias | Ameen Hamdalla | N/A | Approved/Merged |
-| #45 | Theodore Farias | Ameen Hamdalla | https://chatgpt.com/c/6a79305d-6a18-83e8-92b8-d6fcb0d24c9e | Approved/Merged |
+| #45 | Theodore Farias | Ameen Hamdalla | [Link to shared ChatGPT chat](https://chatgpt.com/share/e/6a7e5cd0-1dac-83e8-819d-5576781a2a5b) | Approved/Merged |
 | #46 | Ameen Hamdalla | Theodore Farias | N/A | Approved/Merged |
 | #47 | Ameen Hamdalla | Theodore Farias | N/A | Approved/Merged |
 | #49 | Ameen Hamdalla | Thedore Farias | N/A | Approved/Merged |
